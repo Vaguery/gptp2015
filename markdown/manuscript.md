@@ -1,8 +1,4 @@
-# Genetic Programming As If You Meant It
-
-
-
-## "TDD as if you meant it"
+# "TDD as if you meant it"
 
 As far as I can tell, Keith Braithwaite first described his [training exercise](http://cumulative-hypotheses.org/2011/08/30/tdd-as-if-you-meant-it/) for software developers in 2009. The target of the exercise is "Pseudo-TDD": the noted habit among software developers who claim to "know" and "do" test-driven development as part of their daily work towards a sort of thoughtless approximation of the technique.
 
@@ -34,25 +30,25 @@ A number of contextually positive benefits are attributed to agile software deve
 
 In other words: innovative approaches to the problem at hand began to arise, though there wasn't enough time to finish them in the time alloted for the exercise. The analogy to our collective experience to date with genetic programming should start to peek through at this point---though the thoughtful reader will hopefully wonder what utility there is in an analogy drawn between two similarly unsatisfying outcomes.
 
-## Pickering's "Mangle of Practice"
+# Pickering's "Mangle of Practice"
 
 
-## What it can mean to "use" genetic programming
+# What it can mean to "use" genetic programming
 
-## Cases for and against "usable GP": cost, features, reliability, simplicity
+# Cases for and against "usable GP": cost, features, reliability, simplicity
 
-## "Artificial Intelligence investigated by Special Crimes Unit"; or, Even Athena needed the head of Zeus
+# "Artificial Intelligence investigated by Special Crimes Unit"; or, Even Athena needed the head of Zeus
 
-## The mangle of practice and the mangle in practice
+# The mangle of practice and the mangle in practice
 
-## The yardstick and the bamboo hand
+# The yardstick and the bamboo hand
 
-## Leveraging "resistance": the problem of the dots and lines
+# Leveraging "resistance": the problem of the dots and lines
 
-## "Batch" and "interactive" styles
+# "Batch" and "interactive" styles
 
-## Expressing "resistance": the problem of Bertrand's Paradox
+# Expressing "resistance": the problem of Bertrand's Paradox
 
-## Exploration and exploitation interfaces and affordances
+# Exploration and exploitation interfaces and affordances
 
-## The deeper question: What should it mean to _act intelligently_?
+# The deeper question: What should it mean to _act intelligently_?
