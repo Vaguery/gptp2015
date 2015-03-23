@@ -13,6 +13,7 @@ The story lives smack dab at the intersection of theory and practice: I describe
 ## Structure
 
 - Pickering's "Mangle of Practice"
+- The words you think you need
 - What it can mean to "use" genetic programming
 - Cases for and against "usable GP": cost, features, reliability, simplicity
 - "Artificial Intelligence investigated by Special Crimes Unit"; or, Even Athena needed the head of Zeus
