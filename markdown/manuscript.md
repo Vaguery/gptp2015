@@ -1,6 +1,18 @@
-# Pickering's "Mangle of Practice"
+# Why
 
-Genetic Programming (and the broader body of work to which it belongs, which I prefer to call "generative processing", also abbreviated "GP") embodies a very particular _stance_ towards the scientific and engineering work of modeling, design, analysis and---least of all---optimization. A case could be made that the resistance we have all recounted towards GP from the technical and lay audience has little to do with the technical results so amply demonstrated over the last quarter-century, but rather from discomfort among that audience in GP's particular "way of working" on problems. There is a tacit assumption, even among GP theorists and practitioners, that science and engineering are "rigorous", or even successful, only when they proceed through ordered phases of
+More than a decade ago, Rick Riolo, Bill Worzel and I were working on a consulting project together that involved evolutionary algorithms and genetic programming. As we were chatting one day, Bill asked Rick what he'd most like to see as part of the research program of GP "moving forward". Rick's answer informs this contribution, as well as much of my work since.
+
+As I recall, he said he'd like to better understand the "symptoms" we often see when we run an evolutionary search process: premature convergence, failure to improve, the sense when we look at results or ongoing runs that the many parameters _just aren't quite right_. Years later, I take this not only to mean that a benchmarking catalog listing conditions in which search operator $$X$$ under contingency $$Y$$ tends to produce outcome $$Z$$ might be helpful, but also that _the symptoms themselves_ are poorly understood.
+
+The "field" of GP has grown quite a bit in the intervening 15 years. All of us who follow it closely can see the expanding front of new methodologies and techniques---the ones we discuss in our little workshop, and also the newsworthy and admirable public successes. But those advances bring an accompanying dilution of the scope of the theoretical warrants we use to justify them. Each example of "practice" seems to pose unique domain-specific quirks, each implementation makes numerous contingent (and often arbitrary) design and architectural choices, and even the ontological foundations of "individual", "fitness", "behavior" and "population" start to get sloppy around the edges whenever we actually look at What People Actually Do.
+
+The lack of interest in GP among statisticians, planners, designers and mathematical programming aficionados is not just a matter of disciplinary boundary-setting. I imagine much of the skepticism arises from our own inability to say what's happening in a GP run (_even when we look_), let alone why, or what to do in response. We have learned that _more CPU time_ can get us past the stage of "not working", but I argue that we have not been able to satisfactorily explain _why_ for any reasonable and interesting example.
+
+I also argue that this is not the _fault_ of GP. Rather it's the source of GP's long-term survivability as an approach to scientific and engineering projects. In making this argument, I'm forced to stray into philosophical territory before coming back to build a concrete example. But along that wandering path there are several points where we can productively address Rick's concerns.
+
+# How we treat GP (and how it treats us in turn)
+
+Genetic Programming (and the broader body of work to which it belongs, which I prefer to call "generative processing" and also abbreviate as "GP") embodies a very particular _stance_ towards the scientific and engineering work of modeling, design, analysis and---though least of all---optimization. A case could be made that the resistance we have all recounted towards GP from the technical and lay audience has little to do with the technical results so amply demonstrated over the last quarter-century, but rather from discomfort among that audience in GP's particular "way of working" on problems. There is a tacit assumption, even among GP theorists and practitioners, that science and engineering are "rigorous", or even successful, only when they proceed through ordered phases of
 
 1. conceptualization, the "vision thing"
 2. planning
@@ -18,8 +30,49 @@ Of course, nobody "really believes" this narrative who has ever done any of the 
 
 [^veyne]: Paul Veyne's excellent _Did the Greeks Believe in Their Myths?_ might be an interesting starting point, though.
 
-Andrew Pickering's is the one I'd like to use here.
+## Pickering's "Mangle of Practice"
+
+Andrew Pickering's _Mangle of Practice_ is the one I'd like to use here. This approach is noteworthy because it is so close to our actual experience using GP, of the "didn't we already know this?" sort. At the risk of eliding a lot of extraordinarily well-considered structure, let me summarize:
+
+The act of "doing science" is _at no point whatsoever_ a behavior undertaken by an isolated "researcher" in an objective field of externalities. Rather, the researcher who initiates this process with a vision, intuition, hypothesis or hunch begins always by _making some artifact_: code, an instrument, a proof, a sketch, a maquette or even a thoughtful conversation at a conference.
+
+The thing, inevitably, _resists_. That is, Pickering grants it agency, or rather makes it the agent of all those externalities that impinge on the work to make the _vision_ differ from _practice_: the facts of the actual world, the cultural assumptions and habits of discipline, the raw materials and toolkit available to the practitioner, and so forth. "Resistance" here is not merely the obvious trouble of a software bug or some missing parts, but includes one's sense _on seeing it_ that something's not quite right; the realization that more (or less) is needed. The language we use, in the face of this resistance, is that the _thing made_ "feels wrong" or "points something out", that it "wants to do X instead of Y", or that "it's doing something too complicated for me to understand right now".
+
+And---assuming science is indeed what's being done---the researcher _changes in response to this resistance_. That vision changes, the plan adapts, or in some other way the _thing made_ causes a response in the state of the researcher herself. Pickering's Mangle is this emergent dance of inanimate agency: the researcher starting to follow a vision by making (or altering) a _thing_, and the _thing made_ in turn acting as a channel for the world itself to steer the researcher in another direction.
+
+The "mangling" of Pickering's metaphoric name refers not to wounding but to the mechanical laundry apparatus, the antique wringer through which sheets and linens are run to drain the water, and which as a _side-effect_ impose a novel higher-dimensional structure and juxtapose unexpected components with one another. Here, the response of the researcher to resistance she experiences in the course of her project is no less a part of the dynamics of "science" than the act of writing and running code, the authority warranted by particular statistical practices in her discipline, or the raw pressure of physical laws.
  
+## GP as "mangle-ish" practice
+
+The broader field of machine learning leans seems to take a much more traditional stance towards its subject matter: machine learning frameworks (excepting GP) are each discrete tools aimed at producing standardized and reproducible results to particular statistical questions. The result of training a neural network or random forest on a given data set is not expected to be a _surprise_ in any real sense, but rather the sufficiently robust result of applying numerical optimization to a particular mathematical programming model. Whether one describes the process as minimizing out-of-sample error or maximizing information gain, the focus of the discipline is on contingent reliability rather than exploratory modeling.
+
+GP has the capacity to _tell us stories_, even in the "simple" domain of symbolic regression problems. The space under consideration is not merely a vector of numerical constants or a binary mask over a suite of input variables, but the _power-set_ of inputs, and of functions over inputs, and of higher-order functions over those. While GP can be used to explore arbitrarily close to a paradigmatic model, we argue for it most when its application can produce unexpected insights. A number of us treat it as the best candidate for "real" artificial intelligence, and rightly so.
+
+We can do that because GP surfaces Pickering's Mangle. When it "works", it does so by offering _helpful resistance_ in our engagement with it, whether in the form of surprising answers, validation of our suspicions, or suggestions of ways to make subsequent moves. It _dances_ with us, in a way that the other mere tools of machine learning do not.
+
+Now a great deal of the last quarter-decade of work in the field, especially in the early days, seems to treat GP as a close relative of other machine learning techniques---as a methodology for producing _unsurprising_ models from data, and within the traditional model of scientific work. That is, an implicit and idealized user is expected to proceed something like the users of any other machine learning framework:
+
+1. frame your problem in the framework-specific language
+2. "get" a GP system
+3. "run GP on the data"
+4. ???
+5. you have solved your problem
+
+There's strong pressure from our actual user community to enforce this stance, not least because it is exactly the stance of planning and public policy, and of the mythic science or programming project manager. That is, it frames GP as a _tool_ to be invoked in a known and well-described planning situation.
+
+The resulting resistance from early-adopting "users" who "get" an off-the-shelf GP system and try to apply it to their problem---at least within this narrative of work---should not be unexpected. _Being surprising_ is perhaps the worst choice for any traditional project plan. It's no wonder that so much of GP research is focused on particular tweaks and staged horse-races among the unnumbered techniques: as long as there is a sentiment that GP might be "tamed" so that step (4) above _never happens_, so that the framework might join its more traditional and popular relatives, there will be strong pressure to calculate statistics on, for example "proportion of successes in 30 replicates".
+
+But what does a "replicate" mean for somebody using GP for a real project, whether theoretical or practical, where _GP itself_ is not the focus of the work? Projects which authentically "use" GP must necessarily be searching for noteworthy answers, which is to say _surprising_ and _interesting_ answers, that they cannot otherwise obtain. To do otherwise is to somehow expect GP to be a form of "research automation", a premature expectation in light of our experience.
+
+Therefore, any researcher who is using GP _realistically_ is one who is watching, and adjusting, and engaging and interacting with the process of search itself. Seen as working within a traditional (and deeply misleading) narrative framework, we watch as she runs a population of 100 individuals for 100 generations, peers at the results in a CSV file and finds them wanting, and then adjusts the GP parameters to run another 100 generations... and repeating as necessary. But there is _no discernible difference_ when we frame the same process as one of participating in the single application of an interactive algorithm that (remarkably, and unaccountably when you think about it) _throws away all intermediate results every 100 generations_.
+
+Further, let's explore that traditional narrative which sees her workflow as a series of repeated attempts to use GP as a tool in a situation for which it is poorly suited, or maybe "badly tuned". She is carefully "not interfering" with any given run of 100 generations, observing our tradition in this field, and can only peer into the results file after the fact. During the course of any 100 generations, all sorts of dynamics have happened: crossover, mutation, selection, all the many random choices. Imagine for a moment we were given perfect access to the entire dynamical pedigree of the unsatisfying results she receives at the end, and were able to backtrack to any point in the run and change a single decision. Before that point, it's unclear how badly things will actually turn out at the 100-generation mark; at some point after that juncture, it's obvious to anybody watching that the whole thing's a mess.
+
+If such miraculous insights were available, then surely the correct approach would be to intervene and adjust the situation when the crucial point was reached... and then continue. Lacking (as we do) this miraculous insight, _why then does it seem reasonable to stop any run arbitrarily at a pre-ordained time point and begin again from scratch?_
+
+It is, I think, because the myths of artificial intelligence and vision-driven science are deeply intertwined. It is somehow "cheating" to admit in a scientific paper, even if no mistakes were made, that the original vision and plan changed over the course of the project; rather we describe research _results_ as inevitable outcomes of an ahistorical process that erases the work actually done by human beings. Similarly, it is somehow "cheating" to admit in a GP project, even if every parameter was set correctly, that the original vision and plan gave way to the inevitable surprises thrown up by GP's tremendous potential to surprise.
+
+But insofar as GP _surprises us_---and that is its sole strength over more predictable and manageable frameworks---we will inevitably see a good fraction of the surprises as _disappointments_ rather than opportunities to adapt our selves.
 
 # "TDD as if you meant it"
 
