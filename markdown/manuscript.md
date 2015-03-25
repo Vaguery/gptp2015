@@ -42,7 +42,7 @@ And---assuming science is indeed what's being done---the researcher _changes in 
 
 The "mangling" of Pickering's metaphoric name refers not to wounding but to the mechanical laundry apparatus, the antique wringer through which sheets and linens are run to drain the water, and which as a _side-effect_ impose a novel higher-dimensional structure and juxtapose unexpected components with one another. Here, the response of the researcher to resistance she experiences in the course of her project is no less a part of the dynamics of "science" than the act of writing and running code, the authority warranted by particular statistical practices in her discipline, or the raw pressure of physical laws.
  
-## GP as "mangle-ish" practice
+## GP as "mangle-ish practice"
 
 The broader field of machine learning leans seems to take a much more traditional stance towards its subject matter: machine learning frameworks (excepting GP) are each discrete tools aimed at producing standardized and reproducible results to particular statistical questions. The result of training a neural network or random forest on a given data set is not expected to be a _surprise_ in any real sense, but rather the sufficiently robust result of applying numerical optimization to a particular mathematical programming model. Whether one describes the process as minimizing out-of-sample error or maximizing information gain, the focus of the discipline is on contingent reliability rather than exploratory modeling.
 
@@ -106,24 +106,54 @@ A number of contextually positive benefits are attributed to agile software deve
 
 In other words: innovative approaches to the problem at hand began to arise, though there wasn't enough time to finish them in the time alloted for the exercise. The analogy to our collective experience to date with genetic programming should start to peek through at this point---though the thoughtful reader will hopefully wonder what utility there is in an analogy drawn between two similarly unsatisfying outcomes.
 
+\[more here\]
 
+# As if we _really_ meant it
 
-# What it can mean to "use" genetic programming
+In the same way that Braithwaite's onerous coding exercise drives the attention of its participants toward test-driven design with the obligation to write "real" code _only as a refactoring_, I will here demand a _warrant_ for every step that moves the algorithm away from random guessing. Not only do traditional search operators like crossover, mutation and \[negative\] selection not come "for free" in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them _as part of an ongoing search process_. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that "more is better" in every case.
 
-# Cases for and against "usable GP": cost, features, reliability, simplicity
+The result will be an incremental process of refinement of an ongoing search, carried out not at the level of externally-assigned parameter "tweaks" but rather by _opening_ the black boxes we typically demand and demanding we do surgery to correct their "pathologies" (and understand their mysteries) without killing them outright. It is not intended as an "algorithm" to supplant those used today, but rather as a forced re-description of what we actually already do.
 
-# "Artificial Intelligence investigated by Special Crimes Unit"; or, Even Athena needed the head of Zeus
+## A tableau representation for GP systems
 
-# The mangle of practice and the mangle in practice
+It will help if I present a bit of formalism.
 
-# The yardstick and the bamboo hand
+Operators
+Individuals
+Rubrics
+
+### "traditional GP tableau"
+
+The analogy to SQL.
+
+### "lexicase selection tableau"
+
+The analogy to SQL.
+
+### "lazy lexicase selection tableau"
+
+The analogy to NoSQL.
+
+### "mutually lazy tableau"
+
+"Send me a message."
+
+### "as if we really meant it"
+
+I need your help.
 
 # Leveraging "resistance": the problem of the dots and lines
 
-# "Batch" and "interactive" styles
+## dots and lines, in pushforth
 
-# Expressing "resistance": the problem of Bertrand's Paradox
+## the problem of the unknown language
+
+## the problem of the objective(s)
+
+## expanding the goals when it's boring
 
 # Exploration and exploitation interfaces and affordances
 
-# The deeper question: What should it mean to _act intelligently_?
+# Final thoughts: What should it mean to _act intelligently_?
+
+(It would mean the sort of self-awareness it takes to notice that something is wrong, and to ask for help.)

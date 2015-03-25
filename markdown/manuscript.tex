@@ -42,7 +42,7 @@ And---assuming science is indeed what's being done---the researcher \emph{change
 
 The ``mangling'' of Pickering's metaphoric name refers not to wounding but to the mechanical laundry apparatus, the antique wringer through which sheets and linens are run to drain the water, and which as a \emph{side-effect} impose a novel higher-dimensional structure and juxtapose unexpected components with one another. Here, the response of the researcher to resistance she experiences in the course of her project is no less a part of the dynamics of ``science'' than the act of writing and running code, the authority warranted by particular statistical practices in her discipline, or the raw pressure of physical laws.
 
-\subsection{GP as ``mangle-ish'' practice}\hypertarget{gp-as-mangle-ish-practice}{}\label{gp-as-mangle-ish-practice}
+\subsection{GP as ``mangle-ish practice''}\hypertarget{gp-as-mangle-ish-practice}{}\label{gp-as-mangle-ish-practice}
 
 The broader field of machine learning leans seems to take a much more traditional stance towards its subject matter: machine learning frameworks (excepting GP) are each discrete tools aimed at producing standardized and reproducible results to particular statistical questions. The result of training a neural network or random forest on a given data set is not expected to be a \emph{surprise} in any real sense, but rather the sufficiently robust result of applying numerical optimization to a particular mathematical programming model. Whether one describes the process as minimizing out-of-sample error or maximizing information gain, the focus of the discipline is on contingent reliability rather than exploratory modeling.
 
@@ -112,23 +112,55 @@ By the end of the exercise, almost half the teams were coding towards something 
 
 In other words: innovative approaches to the problem at hand began to arise, though there wasn't enough time to finish them in the time alloted for the exercise. The analogy to our collective experience to date with genetic programming should start to peek through at this point---though the thoughtful reader will hopefully wonder what utility there is in an analogy drawn between two similarly unsatisfying outcomes.
 
-\section{What it can mean to ``use'' genetic programming}\hypertarget{what-it-can-mean-to-use-genetic-programming}{}\label{what-it-can-mean-to-use-genetic-programming}
+[more here]
 
-\section{Cases for and against ``usable GP'': cost, features, reliability, simplicity}\hypertarget{cases-for-and-against-usable-gp-cost-features-reliability-simplicity}{}\label{cases-for-and-against-usable-gp-cost-features-reliability-simplicity}
+\section{As if we \emph{really} meant it}\hypertarget{as-if-we-really-meant-it}{}\label{as-if-we-really-meant-it}
 
-\section{``Artificial Intelligence investigated by Special Crimes Unit''; or, Even Athena needed the head of Zeus}\hypertarget{artificial-intelligence-investigated-by-special-crimes-unit-or-even-athena-needed-the-head-of-zeus}{}\label{artificial-intelligence-investigated-by-special-crimes-unit-or-even-athena-needed-the-head-of-zeus}
+In the same way that Braithwaite's onerous coding exercise drives the attention of its participants toward test-driven design with the obligation to write ``real'' code \emph{only as a refactoring}, I will here demand a \emph{warrant} for every step that moves the algorithm away from random guessing. Not only do traditional search operators like crossover, mutation and [negative] selection not come ``for free'' in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them \emph{as part of an ongoing search process}. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that ``more is better'' in every case.
 
-\section{The mangle of practice and the mangle in practice}\hypertarget{the-mangle-of-practice-and-the-mangle-in-practice}{}\label{the-mangle-of-practice-and-the-mangle-in-practice}
+The result will be an incremental process of refinement of an ongoing search, carried out not at the level of externally-assigned parameter ``tweaks'' but rather by \emph{opening} the black boxes we typically demand and demanding we do surgery to correct their ``pathologies'' (and understand their mysteries) without killing them outright. It is not intended as an ``algorithm'' to supplant those used today, but rather as a forced re-description of what we actually already do.
 
-\section{The yardstick and the bamboo hand}\hypertarget{the-yardstick-and-the-bamboo-hand}{}\label{the-yardstick-and-the-bamboo-hand}
+\subsection{A tableau representation for GP systems}\hypertarget{a-tableau-representation-for-gp-systems}{}\label{a-tableau-representation-for-gp-systems}
+
+It will help if I present a bit of formalism.
+
+Operators
+Individuals
+Rubrics
+
+\subsubsection{``traditional GP tableau''}\hypertarget{traditional-gp-tableau}{}\label{traditional-gp-tableau}
+
+The analogy to SQL.
+
+\subsubsection{``lexicase selection tableau''}\hypertarget{lexicase-selection-tableau}{}\label{lexicase-selection-tableau}
+
+The analogy to SQL.
+
+\subsubsection{``lazy lexicase selection tableau''}\hypertarget{lazy-lexicase-selection-tableau}{}\label{lazy-lexicase-selection-tableau}
+
+The analogy to NoSQL.
+
+\subsubsection{``mutually lazy tableau''}\hypertarget{mutually-lazy-tableau}{}\label{mutually-lazy-tableau}
+
+``Send me a message.''
+
+\subsubsection{``as if we really meant it''}\hypertarget{as-if-we-really-meant-it-1}{}\label{as-if-we-really-meant-it-1}
+
+I need your help.
 
 \section{Leveraging ``resistance'': the problem of the dots and lines}\hypertarget{leveraging-resistance-the-problem-of-the-dots-and-lines}{}\label{leveraging-resistance-the-problem-of-the-dots-and-lines}
 
-\section{``Batch'' and ``interactive'' styles}\hypertarget{batch-and-interactive-styles}{}\label{batch-and-interactive-styles}
+\subsection{dots and lines, in pushforth}\hypertarget{dots-and-lines-in-pushforth}{}\label{dots-and-lines-in-pushforth}
 
-\section{Expressing ``resistance'': the problem of Bertrand's Paradox}\hypertarget{expressing-resistance-the-problem-of-bertrands-paradox}{}\label{expressing-resistance-the-problem-of-bertrands-paradox}
+\subsection{the problem of the unknown language}\hypertarget{the-problem-of-the-unknown-language}{}\label{the-problem-of-the-unknown-language}
+
+\subsection{the problem of the objective(s)}\hypertarget{the-problem-of-the-objectives}{}\label{the-problem-of-the-objectives}
+
+\subsection{expanding the goals when it's boring}\hypertarget{expanding-the-goals-when-its-boring}{}\label{expanding-the-goals-when-its-boring}
 
 \section{Exploration and exploitation interfaces and affordances}\hypertarget{exploration-and-exploitation-interfaces-and-affordances}{}\label{exploration-and-exploitation-interfaces-and-affordances}
 
-\section{The deeper question: What should it mean to \emph{act intelligently}?}\hypertarget{the-deeper-question-what-should-it-mean-to-act-intelligently}{}\label{the-deeper-question-what-should-it-mean-to-act-intelligently}
+\section{Final thoughts: What should it mean to \emph{act intelligently}?}\hypertarget{final-thoughts-what-should-it-mean-to-act-intelligently}{}\label{final-thoughts-what-should-it-mean-to-act-intelligently}
+
+(It would mean the sort of self-awareness it takes to notice that something is wrong, and to ask for help.)
 
