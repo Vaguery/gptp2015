@@ -1,18 +1,36 @@
+{::comment}
+kramdown -o latex markdown/manuscript.md > markdown/manuscript.tex
+{:/comment}
+
 # Why
 
-More than a decade ago, Rick Riolo, Bill Worzel and I were working on a consulting project together that involved evolutionary algorithms and genetic programming. As we were chatting one day, Bill asked Rick what he'd most like to see as part of the research program of GP "moving forward". Rick's answer informs this contribution, as well as much of my work since.
+More than a decade ago, Rick Riolo, Bill Worzel and I were working on a consulting project together that involved evolutionary algorithms and genetic programming. As we were chatting one day, Bill asked Rick what he'd most like to see as part of the research program of GP "moving forward". Rick's answer informs this contribution, as well as much of my professional work with GP in the years since.
 
-As I recall, he said he'd like to better understand the "symptoms" we often see when we run an evolutionary search process: premature convergence, failure to improve, the sense when we look at results or ongoing runs that the many parameters _just aren't quite right_. Years later, I take this not only to mean that a benchmarking catalog listing conditions in which search operator $$X$$ under contingency $$Y$$ tends to produce outcome $$Z$$ might be helpful, but also that _the symptoms themselves_ are poorly understood.
+As I recall, Rick answered that he'd like to better understand the "symptoms" we often see when we run an evolutionary search process: premature convergence, failure to improve, catastrophic lack of diversity, and the sense when we look at results or ongoing runs that some particular choices we've made setting the many parameters _just aren't quite right_. There are numerous well-written papers suggesting ways around local minima, proposing reasonable and exotic search operators, and running "horse races" between variant algorithms on benchmark problems. But years later, I take Rick's challenge not only to mean that it might be useful to have a benchmarking catalog which lists conditions in which search operator $$X$$ acting under contingency $$Y$$ tends to produce outcome $$Z$$, but also that _the things we identify as symptoms themselves_ are poorly understood, to the point that we think of them as "subjective".
 
-The "field" of GP has grown quite a bit in the intervening 15 years. All of us who follow it closely can see the expanding front of new methodologies and techniques---the ones we discuss in our little workshop, and also the newsworthy and admirable public successes. But those advances bring an accompanying dilution of the scope of the theoretical warrants we use to justify them. Each example of "practice" seems to pose unique domain-specific quirks, each implementation makes numerous contingent (and often arbitrary) design and architectural choices, and even the ontological foundations of "individual", "fitness", "behavior" and "population" start to get sloppy around the edges whenever we actually look at What People Actually Do.
+Somewhere during that same project, I remember a Project Manager telling the story that when domain expert customers were shown a collection of Pareto-optimal solutions to the problem being explored, they were confused. "We don't want a choice, we want _the best_." This came after months of analysis, interviews, and a collective agreement that the problem was fundamentally multi-objective. But when the decision-makers were faced with the unquestionably successful results they had collectively specified, _those results weren't right enough_.
 
-The lack of interest in GP among statisticians, planners, designers and mathematical programming aficionados is not just a matter of disciplinary boundary-setting. I imagine much of the skepticism arises from our own inability to say what's happening in a GP run (_even when we look_), let alone why, or what to do in response. We have learned that _more CPU time_ can get us past the stage of "not working", but I argue that we have not been able to satisfactorily explain _why_ for any reasonable and interesting example.
+In this contribution we must face the fact that such a response is inevitable: not just from silly lay "customers" in an application project, but from ourselves; whether the project is "theoretical" or "practical"; whether it is "small" or "large". Projects resist our initial plans.
 
-I also argue that this is not the _fault_ of GP. Rather it's the source of GP's long-term survivability as an approach to scientific and engineering projects. In making this argument, I'm forced to stray into philosophical territory before coming back to build a concrete example. But along that wandering path there are several points where we can productively address Rick's concerns.
+The "field" of GP has grown quite a bit in the intervening 15 years since these two anecdotes. All of us who follow it closely have played a role in the expanding front of new methodologies and techniques---the extraordinary ones we describe in our little workshop, and also the newsworthy and admirable public successes.
+
+But this acceleration of practical successes has been accompanied by a dilution of the scope of the theoretical warrants we use to justify them: Most examples of "practical success" involve unique domain-specific quirks, each implementation makes numerous contingent (and sometimes arbitrary) design and architectural choices, and even the ontological foundations of "individual", "fitness", "behavior" and "population" start to get sloppy around the edges whenever we actually _look_ at What People Actually Do to Solve Problems With GP.
+
+While this can be disappointing for those of us who follow the progress of theoretical work closely, it has more serious consequences. The lack of interest in GP among statisticians, planners, designers and mathematical programming aficionados is, I argue, not just a matter of disciplinary border wars. I suspect rather that skepticism arises from our own inability to say what's _happening_ in any particular GP run---_even when we look_. Nor for that matter can we be very helpful in explaining _why_, or what to do in response to any given contingency. We have learned that _more CPU time_ can sometimes get us past a tricky stage of "not working", but any project that lives very far from the bounds of the last century's version of "genetic programming" is unexplored territory.
+
+This is not the fault of GP as a field, nor of our theoreticians and engineers. Rather I'll argue that a deep philosophical misconception presides over the work, both within and outside our field. This misconception undermines our understanding of what GP is _doing_, of the way it unfolds in theory and in practice, and even what it's _for_.
+
+I will make my case here in the form of an exercise, or _kata_. This is not intended to be a "thought-experiment", nor is it a suggestion for a new way of working. Rather it is a formal exercise to be undertaken by those of us already working closely with GP systems. In the immediate case, my intent is to surface the three problems I've identified above:
+
+1. What GP _does_
+2. How GP _unfolds_
+3. What GP is _for_
+
+The rules for this exercise, "Doing GP as if you meant it", will feel the most artificial and restrictive to those of us with the most experience. Like the martial arts exercises from which it is ultimately inspired, it isn't intended to be simple or even pleasant for the participants. But because it emphasizes the interaction between the GP system and the user, it not only surfaces the philosophical mistake I've mentioned, but immediately suggests tools with which we can address Rick's decade-old wish.
 
 # How we treat GP (and how it treats us in turn)
 
-Genetic Programming (and the broader body of work to which it belongs, which I prefer to call "generative processing" and also abbreviate as "GP") embodies a very particular _stance_ towards the scientific and engineering work of modeling, design, analysis and---though least of all---optimization. A case could be made that the resistance we have all recounted towards GP from the technical and lay audience has little to do with the technical results so amply demonstrated over the last quarter-century, but rather from discomfort among that audience in GP's particular "way of working" on problems. There is a tacit assumption, even among GP theorists and practitioners, that science and engineering are "rigorous", or even successful, only when they proceed through ordered phases of
+Genetic Programming (and the broader body of work to which it belongs, which I prefer to call "generative processing" and will also abbreviate as "GP") embodies a very particular _stance_ towards the scientific and engineering work of modeling, design, analysis and---though least of all---optimization. A case could be made that the resistance we have all recounted towards GP from the technical and lay audience has little to do with the technical results so amply demonstrated over the last quarter-century, but rather from discomfort among that audience in GP's particular "way of working" on problems. There is a tacit assumption, even among GP theorists and practitioners, that science and engineering are "rigorous", or even successful, only when they proceed through ordered phases of
 
 1. conceptualization, the "vision thing"
 2. planning
@@ -110,19 +128,60 @@ In other words: innovative approaches to the problem at hand began to arise, tho
 
 # As if we _really_ meant it
 
-In the same way that Braithwaite's onerous coding exercise drives the attention of its participants toward test-driven design with the obligation to write "real" code _only as a refactoring_, I will here demand a _warrant_ for every step that moves the algorithm away from random guessing. Not only do traditional search operators like crossover, mutation and \[negative\] selection not come "for free" in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them _as part of an ongoing search process_. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that "more is better" in every case.
+In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write "real" code _only as a refactoring_, I'd like to be able to demand a _warrant_ for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of "Pseudo-TDD" suggests an analogous "Pseudo-GP": one in which the fitness function is the only "interface" with the problem itself, and where the representation language, search operators, search objectives and other algorithmic "parameters" are _fixed_.[^pseudoGP]
+
+[^pseudoGP]: In much the same way that Braithwaite's participants often acknowledge they _know_ and _use_ TDD as it's formally described, but rarely take the time to do so unless "something goes wrong", I imagine many GP users might say they _know_ and _use_ all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when "something goes wrong". I offer no particular justification for either anecdotal stance here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).
+
+Not only do traditional search operators like crossover, mutation and \[negative\] selection not come "for free" in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them _as part of an ongoing search process_. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that "more is better" in every case.
 
 The result will be an incremental process of refinement of an ongoing search, carried out not at the level of externally-assigned parameter "tweaks" but rather by _opening_ the black boxes we typically demand and demanding we do surgery to correct their "pathologies" (and understand their mysteries) without killing them outright. It is not intended as an "algorithm" to supplant those used today, but rather as a forced re-description of what we actually already do.
 
-## A tableau representation for GP systems
+## The tableau representation of GP systems
 
-It will help if I present a bit of formalism.
+I find it helps to present a simplified but formalized description of GP systems, and one which highlights the particular features I'm considering.
 
-Operators
-Individuals
-Rubrics
+At the highest level of abstraction, we will treat GP as a collection of particular _decisions_ made by the user, plus an otherwise autonomous stochastic process executed by software and hardware, which can be "started", "paused" and "resumed" but which cannot be _restarted_.
 
-### "traditional GP tableau"
+The decisions available to the user apply to three core components of the stochastic process: `operators`, `answers`, and `rubrics`.
+
+### Operators
+
+An `operator` is any function which takes as argument a (possibly empty) collection of `answers` and produces a new collection of `answers`. Operators thus include "random guessing", which in GP systems is often used to build an initial population, any "crossover" and "mutation" functions, but also any arbitrarily complex function which might be used to _create a new answer_. So for example "particle swarm on an abstract expression tree" would be an `operator` working on a single `answer` and producing a very large collection of results.
+
+In the exercise (but not in the examples that follow) _every intermediate result_ which is an `answer` is considered to be part of the return value. That is, `operators` are obliged to return all intermediate `answers` they produce while building their "actual" results: a function that implements "crossover-and-mutation" will is obliged to return _all_ crossover products it builds, in addition to the results of a subsequent internal mutation.
+
+Note that no process is provided for `answers` to be _removed_ from a tableau. This framework is purely cumulative.
+
+### Answers
+
+An `answer` is what might traditionally be called an "individual" in GP literature, though there are subtle differences. We can model them programmatically as key--value hash, typically beginning with a "genome" or "script" field set to an abstracted representation for a solution to the problem at hand. As an `answer` "matures" in the unfolding tableau, various  other attributes will be appended and set by other algorithmic processes, such as fitness scores or measured attributes like "age" or "alive?" states.
+
+In the tableau layout, we will represent the unfolding collection of `answers` as the _rows_ of a spreadsheet-like table, and their attributes and scores as the _columns_.
+
+### Rubrics
+
+A `rubric` is any function which returns a scalar numerical value, given arguments of a collection of one or more `answers` (and possibly additional arguments), and assigned to a particular `answer`.
+
+Insofar as any given `rubric` is associated with an objective of search, it should be framed as a _minimization_ form. For errors, this should be obvious; for `rubrics` used in ALPS-like systems, realize that the desired `rubric` to select _younger_ `answers` is not "age" but "youth". 
+
+In our final exercise (though not in the examples to follow) there will also be a strict requirement that any attribute associated with an `answer` is also available as an _implicit_ `rubric`: the script, the creation time (if recorded), or any other `rubric`. We will not permit `rubrics` to store intermediate values, _except in other rubrics_: thus a `rubric` which specifies "sum squared error over a training set" cannot be applied without also _first_ creating `rubrics` for "measured error when provided input $$i$$" every element $$i$$ of the training set. If the training set has 100 elements, then the SSE `rubric` implicitly represents a suite of 101.
+
+However, in the examples to follow that sketch "traditional GP", we can relax this restriction.
+
+### Search process
+
+
+
+### "traditional GP" tableau
+
+It's tempting to be glib about defining "traditional GP", and for the sake of brevity let me succumb to that temptation: Say it is a fixed-size population of 100 `answers` which are created initially at random and subsequently by crossover and mutation, a single `rubric` which returns a single SSE score calculated over input--output pairs measured over a static collection of training cases.
+
+| individual | genome | SSE   | (notes) |
+|     0.1    |  ...   |  0.2  |         |
+|     0.2    |  ...   |  0.8  |         |
+|     ...    | | | |
+|     0.N    |  ...   |  0.1  | |
+
 
 The analogy to SQL.
 

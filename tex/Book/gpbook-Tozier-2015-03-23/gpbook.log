@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 MAR 2015 19:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  27 MAR 2015 13:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -475,6 +475,24 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (/usr/local/texlive/2014/texmf-dist/tex/latex/import/import.sty
 Package: import 2009/03/23  v 5.1
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip57
+\LTright=\skip58
+\LTpre=\skip59
+\LTpost=\skip60
+\LTchunksize=\count153
+\LTcapwidth=\dimen154
+\LT@head=\box59
+\LT@firsthead=\box60
+\LT@foot=\box61
+\LT@lastfoot=\box62
+\LT@cols=\count154
+\LT@rows=\count155
+\c@LT@tables=\count156
+\c@LT@chunks=\count157
+\LT@p@ftn=\toks28
+)
 \@indexfile=\write4
 \openout4 = `gpbook.idx'.
 
@@ -482,49 +500,49 @@ Package: import 2009/03/23  v 5.1
 Writing index file gpbook.idx
 (/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip57
-\bibsep=\skip58
+\bibhang=\skip61
+\bibsep=\skip62
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count153
+\c@NAT@ctr=\count158
 )
 (./chapterbib.sty
-\c@inputfile=\count154
+\c@inputfile=\count159
 Package: chapterbib 2010/09/18  v 1.17
 ) (./gpbook.aux)
 \openout1 = `gpbook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 44.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count155
-\scratchdimen=\dimen154
-\scratchbox=\box59
-\nofMPsegments=\count156
-\nofMParguments=\count157
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count158
-\MPscratchDim=\dimen155
-\MPnumerator=\count159
-\makeMPintoPDFobject=\count160
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count160
+\scratchdimen=\dimen155
+\scratchbox=\box63
+\nofMPsegments=\count161
+\nofMParguments=\count162
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count163
+\MPscratchDim=\dimen156
+\MPnumerator=\count164
+\makeMPintoPDFobject=\count165
+\everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -540,8 +558,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring OFF on input line 43.
+\AtBeginShipoutBox=\box64
+Package hyperref Info: Link coloring OFF on input line 44.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -549,11 +567,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count161
+\c@section@level=\count166
 )
-LaTeX Info: Redefining \ref on input line 43.
-LaTeX Info: Redefining \pageref on input line 43.
-LaTeX Info: Redefining \nameref on input line 43.
+LaTeX Info: Redefining \ref on input line 44.
+LaTeX Info: Redefining \pageref on input line 44.
+LaTeX Info: Redefining \nameref on input line 44.
 
 (./gpbook.out) (./gpbook.out)
 \@outlinefile=\write5
@@ -604,17 +622,14 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 
 Package hyperref Warning: bookmark level for unknown author defaults to 0.
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 16.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
+
 Underfull \hbox (badness 10000) in paragraph at lines 19--24
 
  []
 
 (../../../markdown/manuscript.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
  [1
 
 
@@ -624,41 +639,49 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 31.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.29004> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.10005> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+ [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 33.
- [3] [4] [5] [6]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 107.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 51.
+ [4] [5] [6] [7]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 125.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 107.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 125.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 107.
+(Font)              size <8> substituted on input line 125.
 
-[7] [8])
+[8]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 149.
+
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [9]
+[10]
+Underfull \vbox (badness 10000) detected at line 189
+ []
+
+)
 No file gpbook.bbl.
-) [9] [10
-
-
-]
+) [11] [12]
 No file gpbook.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 57.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 57.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
 (./gpbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 57.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 57.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
 Package rerunfilecheck Info: File `gpbook.out' has not changed.
 (rerunfilecheck)             Checksum: 0124F353BABCD2CF11C74E6DB96701F6;146.
 
@@ -666,19 +689,16 @@ Package rerunfilecheck Info: File `gpbook.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 57.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 7758 strings out of 493117
- 110240 string characters out of 6135433
- 207517 words of memory out of 5000000
- 11012 multiletter control sequences out of 15000+600000
+ 7852 strings out of 493117
+ 110978 string characters out of 6135433
+ 209669 words of memory out of 5000000
+ 11088 multiletter control sequences out of 15000+600000
  40673 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,8n,27p,1018b,405s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,8n,27p,1331b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
@@ -687,10 +707,10 @@ ive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014
 t/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on gpbook.pdf (10 pages, 108956 bytes).
+Output written on gpbook.pdf (12 pages, 117507 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
- 69 named destinations out of 1000 (max. 500000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 165 compressed objects within 2 object streams
+ 84 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
