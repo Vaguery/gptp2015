@@ -113,7 +113,7 @@ If such miraculous insights were available, then surely the correct approach wou
 
 It is, I think, because the myths of artificial intelligence and the linear narrative of science are so deeply intertwined. It is frowned upon to admit in a scientific paper, even when no mistakes were made, that the original vision and plan changed over the course of the project; rather we are expected to describe research _results_ as the inevitable outcomes of an ahistorical process, and erase all resistance and accommodation actually done by human beings in the context of their projects. Similarly, it feels somehow wrong to admit in a GP project, even if every parameter was set correctly, that the original vision and plan gave way to the inevitable surprises thrown up by GP's inherent tendencies to do just that.
 
-But insofar as GP _surprises us_---and that is its sole strength over more predictable and manageable frameworks---we will inevitably see a good fraction of those surprises as _disappointments_ rather than opportunities to adapt ourselves. I'd like to suggest we learn new ways to _accommodate_ those disappointments, and stop trying to make them go away.
+But insofar as GP _surprises us_, and since that is its sole strength over more predictable and manageable frameworks, we must inevitably see a good fraction of those surprises at least in part as _disappointments_ rather than encouraging opportunities to change our plans.  Let's learn new ways to accommodate those disappointments, and stop trying to make them go away.
 
 # "TDD as if you meant it"
 
@@ -125,17 +125,17 @@ I should note that a number of agile software development practices share inform
 
 TDD _as such_ is a rigorous process, to the point where it can be described as "painful" (though also "useful") by experienced programmers. The steps are deceptively easy to trivialize and misunderstand, especially for those whose habits of thinking about code are ingrained:
 
-1. Add a little test
-1. Run all tests and fail
-1. Make a little change
-1. Run the tests and succeed
-1. Refactor to remove duplication
+1. Add a little (failing) test which exercises the next behavior you want to build into your codebase
+1. Run all tests, expecting only the newest to fail
+1. Make the minimal change to your codebase that permits the new test to pass
+1. Run all tests, expecting them all to succeed
+1. Refactor codebase to remove duplication
 
-Each stage offers a stumbling block for an experienced programmer, but the most salient for us now is the overarching flow of implementation (or "design") that it imposes: Each cycle, and also the overarching design process, begins with the choice of _which little test should next be added_; each cycle ends with a rigorous process of refactoring, not just of the new code but of the _entire cumulative codebase_ produced over all iterations of this cycle. The middle three steps---implementing a _single_ failing test and modifying the codebase _by just enough_ so that all tests pass---feel when one is working through them as if they could be automated easily. The _mindfulness_ of the process lives in the choice of next steps and (though somewhat less so) of standard refactoring operations.
+Each stage offers a stumbling block for an experienced programmer, but the most salient for us now is the iterative flow of implementation (or "design") that it imposes: Each cycle begins with a choice of _which little test should next be added_; each cycle ends with a rigorous process of refactoring, not just of the new code but of the _entire cumulative codebase_ produced so far. The middle three steps---implementing a _single_ failing test and modifying the codebase _by just enough_ so that all tests pass---feel when one is working through them as if they could be automated easily. The _mindfulness_ of the process lives in the choice of next steps and (though somewhat less so) of standard refactoring operations.
 
-Braithwaite's exercise does an interesting thing to surface the formal rigor of this approach. In it, the participants (willing, of course, because the exercise is a _kata_ or "refresher" for experienced software developers to hone their skills) are asked to implement a nominally simple project like the game of Tic-Tac-Toe, given an _ordered_ list of features to implement and the artificial restriction that they must go farther than normal TDD practice asks. Rather than producing a suite of tests and a self-contained codebase, they are forced to use _only_ refactoring of code added to tests to produce their eventual "codebase". In other words, no code can be "produced" until _duplication in code added multiple passing tests_ provides a warrant for refactoring it out. Further, a facilitator patrols ongoing work and deletes _any and all code not called for by a pre-existing failing test_.
+Braithwaite's exercise does an interesting thing to surface the formal rigor of this approach. In it, the participants (willing, of course, because the exercise is a _kata_ or "refresher" for experienced software developers to hone their skills) are asked to implement a nominally simple project like the game of Tic-Tac-Toe, given an _ordered_ list of features to implement and the artificial restriction that they must go farther than normal TDD practice asks. Rather than producing a suite of tests and a self-contained codebase, they are forced to use _only_ refactoring of code added to tests to produce their eventual "codebase". In other words, no code can be "produced" until the "smell" of duplication in the code added to multiple passing tests _provides a warrant_ for refactoring it out.
 
-Words like "irritating" and "annoying" crop up in participants' accounts of  this onerous backtracking deletion the first few times it happens... as one might imagine. But as Gojko Adzik emphasizes in his descriptions of workshops he's run, the results of "design" of even simple algorithms in this artificial amplified setting seems much more _open-ended_ than it would if the software were built within the typical framing of habits and assumptions that an experienced programmer carries along with her to any project.
+Further, a facilitator patrols ongoing work and deletes _any and all code not called for by a pre-existing failing test_. Words like "irritating" and "annoying" crop up in participants' accounts of  this onerous backtracking deletion the first few times it happens, as one might imagine. But as Gojko Adzik emphasizes in his descriptions of workshops, the resulting designs for even simple algorithms in this artificially amplified setting seems much more _open-ended_ than it would if the software were built under the typical norms and habits an experienced programmer uses in normal conditions.
 
 A number of contextually positive benefits are attributed to agile software development practices, and to TDD within that suite of practices. But the one that brings us here today is that aspect surfaced particularly in Adzik's account of Tic-tac-toe:
 
@@ -149,7 +149,7 @@ In other words: innovative approaches to the problem at hand began to arise, tho
 
 \[more here\]
 
-# As if we _really_ meant it
+# GP as if we meant it
 
 In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write "real" code _only as a refactoring_, I'd like to be able to demand a _warrant_ for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of "Pseudo-TDD" suggests an analogous "Pseudo-GP": one in which the fitness function is the only "interface" with the problem itself, and where the representation language, search operators, search objectives and other algorithmic "parameters" are _fixed_.[^pseudoGP]
 

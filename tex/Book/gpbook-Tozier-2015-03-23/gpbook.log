@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  27 MAR 2015 20:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  27 MAR 2015 20:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -692,13 +692,16 @@ Package rerunfilecheck Info: File `gpbook.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 7853 strings out of 493117
- 111028 string characters out of 6135433
+ 7854 strings out of 493117
+ 111044 string characters out of 6135433
  209722 words of memory out of 5000000
- 11089 multiletter control sequences out of 15000+600000
+ 11090 multiletter control sequences out of 15000+600000
  40673 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  32i,8n,27p,1331b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -710,7 +713,7 @@ ive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014
 t/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on gpbook.pdf (14 pages, 122486 bytes).
+Output written on gpbook.pdf (14 pages, 122518 bytes).
 PDF statistics:
  197 PDF objects out of 1000 (max. 8388607)
  172 compressed objects within 2 object streams

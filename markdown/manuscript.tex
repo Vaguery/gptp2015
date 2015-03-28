@@ -116,7 +116,7 @@ If such miraculous insights were available, then surely the correct approach wou
 
 It is, I think, because the myths of artificial intelligence and the linear narrative of science are so deeply intertwined. It is frowned upon to admit in a scientific paper, even when no mistakes were made, that the original vision and plan changed over the course of the project; rather we are expected to describe research \emph{results} as the inevitable outcomes of an ahistorical process, and erase all resistance and accommodation actually done by human beings in the context of their projects. Similarly, it feels somehow wrong to admit in a GP project, even if every parameter was set correctly, that the original vision and plan gave way to the inevitable surprises thrown up by GP's inherent tendencies to do just that.
 
-But insofar as GP \emph{surprises us}---and that is its sole strength over more predictable and manageable frameworks---we will inevitably see a good fraction of those surprises as \emph{disappointments} rather than opportunities to adapt ourselves. I'd like to suggest we learn new ways to \emph{accommodate} those disappointments, and stop trying to make them go away.
+But insofar as GP \emph{surprises us}, and since that is its sole strength over more predictable and manageable frameworks, we must inevitably see a good fraction of those surprises at least in part as \emph{disappointments} rather than encouraging opportunities to change our plans.  Let's learn new ways to accommodate those disappointments, and stop trying to make them go away.
 
 \section{``TDD as if you meant it''}\hypertarget{tdd-as-if-you-meant-it}{}\label{tdd-as-if-you-meant-it}
 
@@ -127,18 +127,18 @@ I should note that a number of agile software development practices share inform
 TDD \emph{as such} is a rigorous process, to the point where it can be described as ``painful'' (though also ``useful'') by experienced programmers. The steps are deceptively easy to trivialize and misunderstand, especially for those whose habits of thinking about code are ingrained:
 
 \begin{enumerate}
-\item Add a little test
-\item Run all tests and fail
-\item Make a little change
-\item Run the tests and succeed
-\item Refactor to remove duplication
+\item Add a little (failing) test which exercises the next behavior you want to build into your codebase
+\item Run all tests, expecting only the newest to fail
+\item Make the minimal change to your codebase that permits the new test to pass
+\item Run all tests, expecting them all to succeed
+\item Refactor codebase to remove duplication
 \end{enumerate}
 
-Each stage offers a stumbling block for an experienced programmer, but the most salient for us now is the overarching flow of implementation (or ``design'') that it imposes: Each cycle, and also the overarching design process, begins with the choice of \emph{which little test should next be added}; each cycle ends with a rigorous process of refactoring, not just of the new code but of the \emph{entire cumulative codebase} produced over all iterations of this cycle. The middle three steps---implementing a \emph{single} failing test and modifying the codebase \emph{by just enough} so that all tests pass---feel when one is working through them as if they could be automated easily. The \emph{mindfulness} of the process lives in the choice of next steps and (though somewhat less so) of standard refactoring operations.
+Each stage offers a stumbling block for an experienced programmer, but the most salient for us now is the iterative flow of implementation (or ``design'') that it imposes: Each cycle begins with a choice of \emph{which little test should next be added}; each cycle ends with a rigorous process of refactoring, not just of the new code but of the \emph{entire cumulative codebase} produced so far. The middle three steps---implementing a \emph{single} failing test and modifying the codebase \emph{by just enough} so that all tests pass---feel when one is working through them as if they could be automated easily. The \emph{mindfulness} of the process lives in the choice of next steps and (though somewhat less so) of standard refactoring operations.
 
-Braithwaite's exercise does an interesting thing to surface the formal rigor of this approach. In it, the participants (willing, of course, because the exercise is a \emph{kata} or ``refresher'' for experienced software developers to hone their skills) are asked to implement a nominally simple project like the game of Tic-Tac-Toe, given an \emph{ordered} list of features to implement and the artificial restriction that they must go farther than normal TDD practice asks. Rather than producing a suite of tests and a self-contained codebase, they are forced to use \emph{only} refactoring of code added to tests to produce their eventual ``codebase''. In other words, no code can be ``produced'' until \emph{duplication in code added multiple passing tests} provides a warrant for refactoring it out. Further, a facilitator patrols ongoing work and deletes \emph{any and all code not called for by a pre-existing failing test}.
+Braithwaite's exercise does an interesting thing to surface the formal rigor of this approach. In it, the participants (willing, of course, because the exercise is a \emph{kata} or ``refresher'' for experienced software developers to hone their skills) are asked to implement a nominally simple project like the game of Tic-Tac-Toe, given an \emph{ordered} list of features to implement and the artificial restriction that they must go farther than normal TDD practice asks. Rather than producing a suite of tests and a self-contained codebase, they are forced to use \emph{only} refactoring of code added to tests to produce their eventual ``codebase''. In other words, no code can be ``produced'' until the ``smell'' of duplication in the code added to multiple passing tests \emph{provides a warrant} for refactoring it out.
 
-Words like ``irritating'' and ``annoying'' crop up in participants' accounts of  this onerous backtracking deletion the first few times it happens\ldots{} as one might imagine. But as Gojko Adzik emphasizes in his descriptions of workshops he's run, the results of ``design'' of even simple algorithms in this artificial amplified setting seems much more \emph{open-ended} than it would if the software were built within the typical framing of habits and assumptions that an experienced programmer carries along with her to any project.
+Further, a facilitator patrols ongoing work and deletes \emph{any and all code not called for by a pre-existing failing test}. Words like ``irritating'' and ``annoying'' crop up in participants' accounts of  this onerous backtracking deletion the first few times it happens, as one might imagine. But as Gojko Adzik emphasizes in his descriptions of workshops, the resulting designs for even simple algorithms in this artificially amplified setting seems much more \emph{open-ended} than it would if the software were built under the typical norms and habits an experienced programmer uses in normal conditions.
 
 A number of contextually positive benefits are attributed to agile software development practices, and to TDD within that suite of practices. But the one that brings us here today is that aspect surfaced particularly in Adzik's account of Tic-tac-toe:
 
@@ -156,7 +156,7 @@ In other words: innovative approaches to the problem at hand began to arise, tho
 
 [more here]
 
-\section{As if we \emph{really} meant it}\hypertarget{as-if-we-really-meant-it}{}\label{as-if-we-really-meant-it}
+\section{GP as if we meant it}\hypertarget{gp-as-if-we-meant-it}{}\label{gp-as-if-we-meant-it}
 
 In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write ``real'' code \emph{only as a refactoring}, I'd like to be able to demand a \emph{warrant} for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of ``Pseudo-TDD'' suggests an analogous ``Pseudo-GP'': one in which the fitness function is the only ``interface'' with the problem itself, and where the representation language, search operators, search objectives and other algorithmic ``parameters'' are \emph{fixed}.\footnote{In much the same way that Braithwaite's participants often acknowledge they \emph{know} and \emph{use} TDD as it's formally described, but rarely take the time to do so unless ``something goes wrong'', I imagine many GP users might say they \emph{know} and \emph{use} all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when ``something goes wrong''. I offer no particular justification for either anecdotal stance here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).}
 
@@ -226,7 +226,7 @@ The analogy to NoSQL.
 
 ``Send me a message.''
 
-\subsubsection{``as if we really meant it''}\hypertarget{as-if-we-really-meant-it-1}{}\label{as-if-we-really-meant-it-1}
+\subsubsection{``as if we really meant it''}\hypertarget{as-if-we-really-meant-it}{}\label{as-if-we-really-meant-it}
 
 I need your help.
 
