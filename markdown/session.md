@@ -1,27 +1,38 @@
 
 # An example session
 
-(test placeholder)
+**Placeholder**: I am converting the transcript of the session from an awful multipage LaTeX `\longtable` into a much more manageable `\enum` list like this. It will take a while, since the original `\longtable` was more than nine pages long and full of table markup.
+
+## The stage is set
 
 `me`
-: I do and say a thing here
-
-  This is a continuation of the first item, and should include a few extra fillips, like $$x=y$$ and a little
-
-  - list
-  - of
-  - items
-  
-  And also it includes a
-
-  > blockquote right here
-
+: well what have we here?
 
 `system`
 : it does and says something back to me
 
 `me`
-: he look I can have a little dialog sortof
+: hey look I can have a little dialog sortof
 
 `system`
 : I can fight you every step of the way, though!
+
+## Progress and Stagnation
+
+`me`
+: Keep going
+
+`system`
+: OK!
+
+## Innovation
+
+`me`
+: Hey!
+
+`system`
+: What?
+
+## Frustrations
+
+(&c)

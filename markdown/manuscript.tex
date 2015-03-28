@@ -1,3 +1,4 @@
+% kramdown -o latex markdown/session.md > markdown/session.tex
 % kramdown -o latex markdown/manuscript.md > markdown/manuscript.tex
 
 \section{Why}\hypertarget{why}{}\label{why}
@@ -203,14 +204,16 @@ A {\tt rubric} function does however have access to the state of the entire tabl
 
 \subsubsection{User moves}\hypertarget{user-moves}{}\label{user-moves}
 
+If we think of the tableau as a ``spreadsheet'' with a small list of {\tt operators} and a large sheet of {\tt answers} as rows and {\tt rubrics} as columns, the User can add one new {\tt operator} or one new column.
+
 \begin{itemize}
-\item add one {\tt operator}
-\item add one {\tt rubric}, which may create other \emph{entailed} {\tt rubrics} as described above
+\item add (or activate from a pre-existing list) exactly one {\tt operator}
+\item add exactly one {\tt rubric}, which may in turn create other \emph{entailed} {\tt rubrics} as described above
 \end{itemize}
 
 \subsubsection{System turn}\hypertarget{system-turn}{}\label{system-turn}
 
-During its turn, the System player adds a specified minimum number of new {\tt answers} to the tableau. It follows a single rote cycle to do so:
+During its turn, the System player adds a specified minimum number of new {\tt answers} to the tableau. If we think of the tableau as a ``spreadsheet'' the System can only add new {\tt answers}. It follows a single rote cycle to do so:
 
 \begin{enumerate}
 \item select an {\tt operator} from those in play, with equal probability
@@ -231,7 +234,7 @@ During its turn, the System player adds a specified minimum number of new {\tt a
 \item A {\tt rubric} can only \emph{run} a single {\tt answer} once; stochastic scripts will only be sampled one time, and no {\tt rubric} score is ever recalculated after the first time
 \end{itemize}
 
-\subsubsection{Interface, the \emph{Goal} of the Exercise}\hypertarget{interface-the-goal-of-the-exercise}{}\label{interface-the-goal-of-the-exercise}
+\subsubsection{Interface: the Goal of the Exercise}\hypertarget{interface-the-goal-of-the-exercise}{}\label{interface-the-goal-of-the-exercise}
 
 During the User's turn, they can of course interrogate the tableau in any way they want, without changing it. The point of the exercise is to drive the User to explore and create analytics and visualizations which can better inform their decisions over the course of the game.
 

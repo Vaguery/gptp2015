@@ -1,4 +1,5 @@
 {::comment}
+kramdown -o latex markdown/session.md > markdown/session.tex
 kramdown -o latex markdown/manuscript.md > markdown/manuscript.tex
 {:/comment}
 
@@ -196,12 +197,14 @@ A `rubric` function does however have access to the state of the entire tableau 
 
 ### User moves
 
-- add one `operator`
-- add one `rubric`, which may create other _entailed_ `rubrics` as described above
+If we think of the tableau as a "spreadsheet" with a small list of `operators` and a large sheet of `answers` as rows and `rubrics` as columns, the User can add one new `operator` or one new column.
+
+- add (or activate from a pre-existing list) exactly one `operator`
+- add exactly one `rubric`, which may in turn create other _entailed_ `rubrics` as described above
 
 ### System turn
 
-During its turn, the System player adds a specified minimum number of new `answers` to the tableau. It follows a single rote cycle to do so:
+During its turn, the System player adds a specified minimum number of new `answers` to the tableau. If we think of the tableau as a "spreadsheet" the System can only add new `answers`. It follows a single rote cycle to do so:
 
 1. select an `operator` from those in play, with equal probability
 2. apply _lexicase selection_ to the tableau to select the required number of input `answers`, filling in missing `rubric` scores as needed
@@ -218,7 +221,7 @@ During its turn, the System player adds a specified minimum number of new `answe
 - The System player _always_ uses lexicase selection, and _always_ uses all `rubrics` as the selection features with equal probability.
 - A `rubric` can only _run_ a single `answer` once; stochastic scripts will only be sampled one time, and no `rubric` score is ever recalculated after the first time
 
-### Interface, the _Goal_ of the Exercise
+### Interface: the Goal of the Exercise
 
 During the User's turn, they can of course interrogate the tableau in any way they want, without changing it. The point of the exercise is to drive the User to explore and create analytics and visualizations which can better inform their decisions over the course of the game.
 
