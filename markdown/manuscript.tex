@@ -158,91 +158,88 @@ In other words: innovative approaches to the problem at hand began to arise, tho
 
 \section{GP as if we meant it}\hypertarget{gp-as-if-we-meant-it}{}\label{gp-as-if-we-meant-it}
 
-In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write ``real'' code \emph{only as a refactoring}, I'd like to be able to demand a \emph{warrant} for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of ``Pseudo-TDD'' suggests an analogous ``Pseudo-GP'': one in which the fitness function is the only ``interface'' with the problem itself, and where the representation language, search operators, search objectives and other algorithmic ``parameters'' are \emph{fixed}.\footnote{In much the same way that Braithwaite's participants often acknowledge they \emph{know} and \emph{use} TDD as it's formally described, but rarely take the time to do so unless ``something goes wrong'', I imagine many GP users might say they \emph{know} and \emph{use} all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when ``something goes wrong''. I offer no particular justification for either anecdotal stance here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).}
+In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write ``real'' code \emph{only as a refactoring}, I'd like to be able to demand a \emph{warrant} for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of ``Pseudo-TDD'' suggests an analogous ``Pseudo-GP'': one in which the fitness function is the only ``interface'' with the problem itself, and where the representation language, search operators, search objectives and other algorithmic ``parameters'' are \emph{fixed}.\footnote{Braithwaite's participants often acknowledge they \emph{know} and \emph{use} TDD as it's formally described, but rarely take the time to do so unless ``something goes wrong''. I imagine many GP users will say they \emph{know} and \emph{use} all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when ``something goes wrong''. I offer no particular justification for either anecdote here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).}
 
 Not only do traditional search operators like crossover, mutation and [negative] selection not come ``for free'' in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them \emph{as part of an ongoing search process}. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that ``more is better'' in every case.
 
 The result will be an incremental process of refinement of an ongoing search, carried out not at the level of externally-assigned parameter ``tweaks'' but rather by \emph{opening} the black boxes we typically demand and demanding we do surgery to correct their ``pathologies'' (and understand their mysteries) without killing them outright. It is not intended as an ``algorithm'' to supplant those used today, but rather as a forced re-description of what we actually already do.
 
-\subsection{The tableau representation of GP systems}\hypertarget{the-tableau-representation-of-gp-systems}{}\label{the-tableau-representation-of-gp-systems}
+\subsection{A tableau representation}\hypertarget{a-tableau-representation}{}\label{a-tableau-representation}
 
-I find it helps to present a simplified but formalized description of GP systems, and one which highlights the particular features I'm considering.
+The exercise proceeds as a sort of game, in which the User and the System take alternating turns. During the User's turn, she can see state of the system so far and make any of several \emph{moves} from a limited set, each of which involve changing the settings of a \emph{tableau}, which completely describes the state of the search system. During the System's turn, it will execute a finite number of steps in which it creates new individuals. At the end of the System's turn, control reverts to the User, and vice versa.
 
-At the highest level of abstraction, we will treat GP as a collection of particular \emph{decisions} made by the user, plus an otherwise autonomous stochastic process executed by software and hardware, which can be ``started'', ``paused'' and ``resumed'' but which cannot be \emph{restarted}.
-
-The decisions available to the user apply to three core components of the stochastic process: {\tt operators}, {\tt answers}, and {\tt rubrics}.
+The tableau, and the suite of moves available to the User, affect three core aspects of search: {\tt operators}, {\tt answers}, and {\tt rubrics}.
 
 \subsubsection{Operators}\hypertarget{operators}{}\label{operators}
 
-An {\tt operator} is any function which takes as argument a (possibly empty) collection of {\tt answers} and produces a new collection of {\tt answers}. Operators thus include ``random guessing'', which in GP systems is often used to build an initial population, any ``crossover'' and ``mutation'' functions, but also any arbitrarily complex function which might be used to \emph{create a new answer}. So for example ``particle swarm on an abstract expression tree'' would be an {\tt operator} working on a single {\tt answer} and producing a very large collection of results.
+An {\tt operator} is any function which takes as argument a (possibly empty) collection of {\tt answers} and produces a new collection of {\tt answers}. Operators thus include ``random guessing'', which in GP systems is often used to build an initial population, any ``crossover'' and ``mutation'' functions. No {\tt operator} can refer to any {\tt answer} not part of its argument set, not can any unset values be set within an {\tt operator}.
 
-In the exercise (but not in the examples that follow) \emph{every intermediate result} which is an {\tt answer} is considered to be part of the return value. That is, {\tt operators} are obliged to return all intermediate {\tt answers} they produce while building their ``actual'' results: a function that implements ``crossover-and-mutation'' will is obliged to return \emph{all} crossover products it builds, in addition to the results of a subsequent internal mutation.
+So for example, if the User wished an {\tt operator} could be constructed which took 30 {\tt answers} as inputs, read their attributes (including {\tt script} and that subset of their {\tt rubric} values which were already set), and produce a single {\tt answer} in its return set. It could \emph{not} take an {\tt answer}, change it, and keep the new one ``if it was better'', since the new {\tt answer} would have no scores at all.
 
-Note that no process is provided for {\tt answers} to be \emph{removed} from a tableau. This framework is purely cumulative.
+Note that no process is provided for {\tt answers} to be \emph{removed} from a tableau. The framework is purely cumulative.
+
+All ``parents'' and other {\tt answer} inputs required by an {\tt operator} are chosen by \emph{lexicase selection} automatically, using the complete suite of {\tt rubrics} in play when invoked. Lexicase selection samples each {\tt rubric} with equal probability.
 
 \subsubsection{Answers}\hypertarget{answers}{}\label{answers}
 
-An {\tt answer} is what might traditionally be called an ``individual'' in GP literature, though there are subtle differences. We can model them programmatically as key--value hash, typically beginning with a ``genome'' or ``script'' field set to an abstracted representation for a solution to the problem at hand. As an {\tt answer} ``matures'' in the unfolding tableau, various  other attributes will be appended and set by other algorithmic processes, such as fitness scores or measured attributes like ``age'' or ``alive?'' states.
+An {\tt answer} might traditionally be called an ``individual'' in GP literature. We can model them programmatically as key--value hash. All new {\tt answers} are born with only a unique {\tt id} and {\tt script} field set. As an {\tt answer} ``matures'' in the unfolding tableau, various other attributes will be set by the System player through the application of {\tt rubrics}.
 
-In the tableau layout, we will represent the unfolding collection of {\tt answers} as the \emph{rows} of a spreadsheet-like table, and their attributes and scores as the \emph{columns}.
+In the tableau visualization, we represent the unfolding collection of {\tt answers} as the \emph{rows} of a spreadsheet-like table, and their attributes and scores as the \emph{columns}.
 
 \subsubsection{Rubrics}\hypertarget{rubrics}{}\label{rubrics}
 
-A {\tt rubric} is any function which returns a scalar numerical value, given arguments of a collection of one or more {\tt answers} (and possibly additional arguments), and assigned to a particular {\tt answer}.
+A {\tt rubric} is any function which returns a scalar numerical value, given the instantaneous state of the tableau itself. For the most part these values can be understood as ``scores'' for various search objectives, though it is likely that a number of ``implicit objectives'' will also create new {\tt rubrics}.
 
-Insofar as any given {\tt rubric} is associated with an objective of search, it should be framed as a \emph{minimization} form. For errors, this should be obvious; for {\tt rubrics} used in ALPS-like systems, realize that the desired {\tt rubric} to select \emph{younger} {\tt answers} is not ``age'' but ``youth''.
+A {\tt rubric} cannot store intermediate values, but can refer to the values of other {\tt rubric} columns. Thus on specifying a {\tt rubric} like ``sum squared error over a training set'', one must also create  {\tt rubrics} for ``measured error when provided input $i$'' for every element $i$ of the training set. If the training set has 100 elements, then the single SSE {\tt rubric} \emph{implicitly} represents a suite of 101 new columns added to the tableau.
 
-In our final exercise (though not in the examples to follow) there will also be a strict requirement that any attribute associated with an {\tt answer} is also available as an \emph{implicit} {\tt rubric}: the script, the creation time (if recorded), or any other {\tt rubric}. We will not permit {\tt rubrics} to store intermediate values, \emph{except in other rubrics}: thus a {\tt rubric} which specifies ``sum squared error over a training set'' cannot be applied without also \emph{first} creating {\tt rubrics} for ``measured error when provided input $i$'' every element $i$ of the training set. If the training set has 100 elements, then the SSE {\tt rubric} implicitly represents a suite of 101.
+A {\tt rubric} function does however have access to the state of the entire tableau as needed, including ``forcing'' other {\tt rubric} values to be calculated. So it is entirely possible to specify {\tt rubric} functions which score:
 
-However, in the examples to follow that sketch ``traditional GP'', we can relax this restriction.
+\begin{itemize}
+\item number of characters in the {\tt answer}'s script
+\item maximum error measured in any of 35 other {\tt rubrics}
+\item number of {\tt div0} errors produced when running with a particular set of inputs
+\item number of stochastic instructions appearing in the {\tt answer}'s script, compared to \emph{all other {\tt answers}}
+\end{itemize}
 
-\subsubsection{Search process}\hypertarget{search-process}{}\label{search-process}
+\subsubsection{User moves}\hypertarget{user-moves}{}\label{user-moves}
 
-\subsubsection{``traditional GP'' tableau}\hypertarget{traditional-gp-tableau}{}\label{traditional-gp-tableau}
+\begin{itemize}
+\item add one {\tt operator}
+\item add one {\tt rubric}, which may create other \emph{entailed} {\tt rubrics} as described above
+\end{itemize}
 
-It's tempting to be glib about defining ``traditional GP'', and for the sake of brevity let me succumb to that temptation: Say it is a fixed-size population of 100 {\tt answers} which are created initially at random and subsequently by crossover and mutation, a single {\tt rubric} which returns a single SSE score calculated over input--output pairs measured over a static collection of training cases.
+\subsubsection{System turn}\hypertarget{system-turn}{}\label{system-turn}
 
-\begin{longtable}{|l|l|l|l|}
-\hline
-individual & genome & SSE & (notes)\\
-0.1 & \ldots{} & 0.2 & \\
-0.2 & \ldots{} & 0.8 & \\
-\ldots{} &  &  & \\
-0.N & \ldots{} & 0.1 & \\
-\hline
-\end{longtable}
+During its turn, the System player adds a specified minimum number of new {\tt answers} to the tableau. It follows a single rote cycle to do so:
 
-The analogy to SQL.
+\begin{enumerate}
+\item select an {\tt operator} from those in play, with equal probability
+\item apply \emph{lexicase selection} to the tableau to select the required number of input {\tt answers}, filling in missing {\tt rubric} scores as needed
+\item apply that one {\tt operator} to the inputs to produce new {\tt answers}, and append those new {\tt answers} immediately to the tableau
+\item {\tt HALT} if the number of new {\tt answers} added in this turn meets or exceeds the number present when the turn started (in other words, if the number of {\tt answers} has doubled); otherwise, go to step (1)
+\end{enumerate}
 
-\subsubsection{``lexicase selection tableau''}\hypertarget{lexicase-selection-tableau}{}\label{lexicase-selection-tableau}
+\subsubsection{Initial setup and restrictions}\hypertarget{initial-setup-and-restrictions}{}\label{initial-setup-and-restrictions}
 
-The analogy to SQL.
+\begin{itemize}
+\item the only {\tt operator} is ``random guess'', which creates a new {\tt answer} with an arbitrary script
+\item no {\tt rubrics} exist (only the {\tt script} and {\tt id} attributes of the {\tt answers})
+\item 50 new {\tt answers} will be produced in the first System turn
+\item No {\tt operator} can \emph{evaluate} any {\tt answer} except in a self-contained local namespace which lacks access to any tableau values or state information
+\item There is no mechanism for \emph{removing} {\tt answers} from the tableau
+\item The System player \emph{always} uses lexicase selection, and \emph{always} uses all {\tt rubrics} as the selection features with equal probability.
+\item A {\tt rubric} can only \emph{run} a single {\tt answer} once; stochastic scripts will only be sampled one time, and no {\tt rubric} score is ever recalculated after the first time
+\end{itemize}
 
-\subsubsection{``lazy lexicase selection tableau''}\hypertarget{lazy-lexicase-selection-tableau}{}\label{lazy-lexicase-selection-tableau}
+\subsubsection{Interface, the \emph{Goal} of the Exercise}\hypertarget{interface-the-goal-of-the-exercise}{}\label{interface-the-goal-of-the-exercise}
 
-The analogy to NoSQL.
+During the User's turn, they can of course interrogate the tableau in any way they want, without changing it. The point of the exercise is to drive the User to explore and create analytics and visualizations which can better inform their decisions over the course of the game.
 
-\subsubsection{``mutually lazy tableau''}\hypertarget{mutually-lazy-tableau}{}\label{mutually-lazy-tableau}
-
-``Send me a message.''
-
-\subsubsection{``as if we really meant it''}\hypertarget{as-if-we-really-meant-it}{}\label{as-if-we-really-meant-it}
-
-I need your help.
-
-\section{Leveraging ``resistance'': the problem of the dots and lines}\hypertarget{leveraging-resistance-the-problem-of-the-dots-and-lines}{}\label{leveraging-resistance-the-problem-of-the-dots-and-lines}
-
-\subsection{dots and lines, in pushforth}\hypertarget{dots-and-lines-in-pushforth}{}\label{dots-and-lines-in-pushforth}
-
-\subsection{the problem of the unknown language}\hypertarget{the-problem-of-the-unknown-language}{}\label{the-problem-of-the-unknown-language}
-
-\subsection{the problem of the objective(s)}\hypertarget{the-problem-of-the-objectives}{}\label{the-problem-of-the-objectives}
-
-\subsection{expanding the goals when it's boring}\hypertarget{expanding-the-goals-when-its-boring}{}\label{expanding-the-goals-when-its-boring}
+\section{An example session}\hypertarget{an-example-session}{}\label{an-example-session}
 
 \section{Exploration and exploitation interfaces and affordances}\hypertarget{exploration-and-exploitation-interfaces-and-affordances}{}\label{exploration-and-exploitation-interfaces-and-affordances}
 
 \section{Final thoughts: What should it mean to \emph{act intelligently}?}\hypertarget{final-thoughts-what-should-it-mean-to-act-intelligently}{}\label{final-thoughts-what-should-it-mean-to-act-intelligently}
 
-(It would mean the sort of self-awareness it takes to notice that something is wrong, and to ask for help.)
+The idea of this exercise came from observing the differences between experienced and ``novice'' (though with strong technical skills) GP users as they explored new problems in a GP setting.
 

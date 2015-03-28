@@ -153,89 +153,79 @@ In other words: innovative approaches to the problem at hand began to arise, tho
 
 In the same way that Braithwaite's onerous coding exercise is intended to drive the attention of its participants toward test-driven design with its obligation to write "real" code _only as a refactoring_, I'd like to be able to demand a _warrant_ for every step that moves our changing genetic programming setup away from just plain random guessing. Braithwaite's target of "Pseudo-TDD" suggests an analogous "Pseudo-GP": one in which the fitness function is the only "interface" with the problem itself, and where the representation language, search operators, search objectives and other algorithmic "parameters" are _fixed_.[^pseudoGP]
 
-[^pseudoGP]: In much the same way that Braithwaite's participants often acknowledge they _know_ and _use_ TDD as it's formally described, but rarely take the time to do so unless "something goes wrong", I imagine many GP users might say they _know_ and _use_ all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when "something goes wrong". I offer no particular justification for either anecdotal stance here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).
+[^pseudoGP]: Braithwaite's participants often acknowledge they _know_ and _use_ TDD as it's formally described, but rarely take the time to do so unless "something goes wrong". I imagine many GP users will say they _know_ and _use_ all the innumerable design and setup options of GP, but treat them as adjustments to be invoked only when "something goes wrong". I offer no particular justification for either anecdote here, but the curious reader is encouraged to poll a sample of participants at any conference (agile or GP).
 
 Not only do traditional search operators like crossover, mutation and \[negative\] selection not come "for free" in this variant, but in every case we must develop a cogent, data-driven argument in favor of starting them _as part of an ongoing search process_. Similarly, the initial selection criteria will be limited to a minimal subset of the training data, and expansion (and other alterations) of the training set will have to be made in light of measured progress, not assumptions that "more is better" in every case.
 
 The result will be an incremental process of refinement of an ongoing search, carried out not at the level of externally-assigned parameter "tweaks" but rather by _opening_ the black boxes we typically demand and demanding we do surgery to correct their "pathologies" (and understand their mysteries) without killing them outright. It is not intended as an "algorithm" to supplant those used today, but rather as a forced re-description of what we actually already do.
 
-## The tableau representation of GP systems
+## A tableau representation
 
-I find it helps to present a simplified but formalized description of GP systems, and one which highlights the particular features I'm considering.
+The exercise proceeds as a sort of game, in which the User and the System take alternating turns. During the User's turn, she can see state of the system so far and make any of several _moves_ from a limited set, each of which involve changing the settings of a _tableau_, which completely describes the state of the search system. During the System's turn, it will execute a finite number of steps in which it creates new individuals. At the end of the System's turn, control reverts to the User, and vice versa.
 
-At the highest level of abstraction, we will treat GP as a collection of particular _decisions_ made by the user, plus an otherwise autonomous stochastic process executed by software and hardware, which can be "started", "paused" and "resumed" but which cannot be _restarted_.
-
-The decisions available to the user apply to three core components of the stochastic process: `operators`, `answers`, and `rubrics`.
+The tableau, and the suite of moves available to the User, affect three core aspects of search: `operators`, `answers`, and `rubrics`.
 
 ### Operators
 
-An `operator` is any function which takes as argument a (possibly empty) collection of `answers` and produces a new collection of `answers`. Operators thus include "random guessing", which in GP systems is often used to build an initial population, any "crossover" and "mutation" functions, but also any arbitrarily complex function which might be used to _create a new answer_. So for example "particle swarm on an abstract expression tree" would be an `operator` working on a single `answer` and producing a very large collection of results.
+An `operator` is any function which takes as argument a (possibly empty) collection of `answers` and produces a new collection of `answers`. Operators thus include "random guessing", which in GP systems is often used to build an initial population, any "crossover" and "mutation" functions. No `operator` can refer to any `answer` not part of its argument set, not can any unset values be set within an `operator`.
 
-In the exercise (but not in the examples that follow) _every intermediate result_ which is an `answer` is considered to be part of the return value. That is, `operators` are obliged to return all intermediate `answers` they produce while building their "actual" results: a function that implements "crossover-and-mutation" will is obliged to return _all_ crossover products it builds, in addition to the results of a subsequent internal mutation.
+So for example, if the User wished an `operator` could be constructed which took 30 `answers` as inputs, read their attributes (including `script` and that subset of their `rubric` values which were already set), and produce a single `answer` in its return set. It could _not_ take an `answer`, change it, and keep the new one "if it was better", since the new `answer` would have no scores at all.
 
-Note that no process is provided for `answers` to be _removed_ from a tableau. This framework is purely cumulative.
+Note that no process is provided for `answers` to be _removed_ from a tableau. The framework is purely cumulative.
+
+All "parents" and other `answer` inputs required by an `operator` are chosen by _lexicase selection_ automatically, using the complete suite of `rubrics` in play when invoked. Lexicase selection samples each `rubric` with equal probability.
 
 ### Answers
 
-An `answer` is what might traditionally be called an "individual" in GP literature, though there are subtle differences. We can model them programmatically as key--value hash, typically beginning with a "genome" or "script" field set to an abstracted representation for a solution to the problem at hand. As an `answer` "matures" in the unfolding tableau, various  other attributes will be appended and set by other algorithmic processes, such as fitness scores or measured attributes like "age" or "alive?" states.
+An `answer` might traditionally be called an "individual" in GP literature. We can model them programmatically as key--value hash. All new `answers` are born with only a unique `id` and `script` field set. As an `answer` "matures" in the unfolding tableau, various other attributes will be set by the System player through the application of `rubrics`.
 
-In the tableau layout, we will represent the unfolding collection of `answers` as the _rows_ of a spreadsheet-like table, and their attributes and scores as the _columns_.
+In the tableau visualization, we represent the unfolding collection of `answers` as the _rows_ of a spreadsheet-like table, and their attributes and scores as the _columns_.
 
 ### Rubrics
 
-A `rubric` is any function which returns a scalar numerical value, given arguments of a collection of one or more `answers` (and possibly additional arguments), and assigned to a particular `answer`.
+A `rubric` is any function which returns a scalar numerical value, given the instantaneous state of the tableau itself. For the most part these values can be understood as "scores" for various search objectives, though it is likely that a number of "implicit objectives" will also create new `rubrics`.
 
-Insofar as any given `rubric` is associated with an objective of search, it should be framed as a _minimization_ form. For errors, this should be obvious; for `rubrics` used in ALPS-like systems, realize that the desired `rubric` to select _younger_ `answers` is not "age" but "youth". 
+A `rubric` cannot store intermediate values, but can refer to the values of other `rubric` columns. Thus on specifying a `rubric` like "sum squared error over a training set", one must also create  `rubrics` for "measured error when provided input $$i$$" for every element $$i$$ of the training set. If the training set has 100 elements, then the single SSE `rubric` _implicitly_ represents a suite of 101 new columns added to the tableau.
 
-In our final exercise (though not in the examples to follow) there will also be a strict requirement that any attribute associated with an `answer` is also available as an _implicit_ `rubric`: the script, the creation time (if recorded), or any other `rubric`. We will not permit `rubrics` to store intermediate values, _except in other rubrics_: thus a `rubric` which specifies "sum squared error over a training set" cannot be applied without also _first_ creating `rubrics` for "measured error when provided input $$i$$" every element $$i$$ of the training set. If the training set has 100 elements, then the SSE `rubric` implicitly represents a suite of 101.
+A `rubric` function does however have access to the state of the entire tableau as needed, including "forcing" other `rubric` values to be calculated. So it is entirely possible to specify `rubric` functions which score:
 
-However, in the examples to follow that sketch "traditional GP", we can relax this restriction.
+- number of characters in the `answer`'s script
+- maximum error measured in any of 35 other `rubrics`
+- number of `div0` errors produced when running with a particular set of inputs
+- number of stochastic instructions appearing in the `answer`'s script, compared to _all other `answers`_
 
-### Search process
+### User moves
 
+- add one `operator`
+- add one `rubric`, which may create other _entailed_ `rubrics` as described above
 
+### System turn
 
-### "traditional GP" tableau
+During its turn, the System player adds a specified minimum number of new `answers` to the tableau. It follows a single rote cycle to do so:
 
-It's tempting to be glib about defining "traditional GP", and for the sake of brevity let me succumb to that temptation: Say it is a fixed-size population of 100 `answers` which are created initially at random and subsequently by crossover and mutation, a single `rubric` which returns a single SSE score calculated over input--output pairs measured over a static collection of training cases.
+1. select an `operator` from those in play, with equal probability
+2. apply _lexicase selection_ to the tableau to select the required number of input `answers`, filling in missing `rubric` scores as needed
+3. apply that one `operator` to the inputs to produce new `answers`, and append those new `answers` immediately to the tableau
+4. `HALT` if the number of new `answers` added in this turn meets or exceeds the number present when the turn started (in other words, if the number of `answers` has doubled); otherwise, go to step (1)
 
-| individual | genome | SSE   | (notes) |
-|     0.1    |  ...   |  0.2  |         |
-|     0.2    |  ...   |  0.8  |         |
-|     ...    | | | |
-|     0.N    |  ...   |  0.1  | |
+### Initial setup and restrictions
 
+- the only `operator` is "random guess", which creates a new `answer` with an arbitrary script
+- no `rubrics` exist (only the `script` and `id` attributes of the `answers`)
+- 50 new `answers` will be produced in the first System turn
+- No `operator` can _evaluate_ any `answer` except in a self-contained local namespace which lacks access to any tableau values or state information
+- There is no mechanism for _removing_ `answers` from the tableau
+- The System player _always_ uses lexicase selection, and _always_ uses all `rubrics` as the selection features with equal probability.
+- A `rubric` can only _run_ a single `answer` once; stochastic scripts will only be sampled one time, and no `rubric` score is ever recalculated after the first time
 
-The analogy to SQL.
+### Interface, the _Goal_ of the Exercise
 
-### "lexicase selection tableau"
+During the User's turn, they can of course interrogate the tableau in any way they want, without changing it. The point of the exercise is to drive the User to explore and create analytics and visualizations which can better inform their decisions over the course of the game.
 
-The analogy to SQL.
-
-### "lazy lexicase selection tableau"
-
-The analogy to NoSQL.
-
-### "mutually lazy tableau"
-
-"Send me a message."
-
-### "as if we really meant it"
-
-I need your help.
-
-# Leveraging "resistance": the problem of the dots and lines
-
-## dots and lines, in pushforth
-
-## the problem of the unknown language
-
-## the problem of the objective(s)
-
-## expanding the goals when it's boring
+# An example session
 
 # Exploration and exploitation interfaces and affordances
 
 # Final thoughts: What should it mean to _act intelligently_?
 
-(It would mean the sort of self-awareness it takes to notice that something is wrong, and to ask for help.)
+The idea of this exercise came from observing the differences between experienced and "novice" (though with strong technical skills) GP users as they explored new problems in a GP setting.
