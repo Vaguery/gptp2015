@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -8,6 +8,46 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem[{Adzic(2009)}]{Adzic2009}
+Adzic G (2009) Tdd as if you meant it -- revisited.
+  \urlprefix\url{http://gojko.net/2009/08/02/tdd-as-if-you-meant-it-revisited/}
+
+\bibitem[{Beck(2002)}]{Beck2002}
+Beck K (2002) Test Driven Development: By Example. Addison-Wesley Professional
+
+\bibitem[{Becker(2012)}]{Becker:2012}
+Becker DL (2012) Many Subtle Channels: In Praise of Potential Literature.
+  Harvard University Press
+
+\bibitem[{Braithwaite(2011)}]{Braithwaite2011}
+Braithwaite K (2011) Tdd as if you meant it.
+  \urlprefix\url{http://cumulative-hypotheses.org/2011/08/30/tdd-as-if-you-meant-it/}
+
+\bibitem[{Braithwaite(2012)}]{Braithwaite2012}
+Braithwaite K (2012) Tdd as if you meant it (workshop recording).
+  \urlprefix\url{http://www.infoq.com/presentations/TDD-as-if-You-Meant-It}
+
+\bibitem[{Hornby(2009)}]{Hornby:2009:GPTP}
+Hornby GS (2009) A steady-state version of the age-layered population structure
+  {EA}. In: Riolo RL, O'Reilly UM, McConaghy T (eds) Genetic Programming Theory
+  and Practice {VII}, Genetic and Evolutionary Computation, Springer, Ann
+  Arbor, chap~6, pp 87--102, \doi{doi:10.1007/978-1-4419-1626-6_6}
+
+\bibitem[{Koutalos(2008)}]{Koutalos:2008}
+Koutalos Y (2008) "the docile body of the scientist". In: Andrew~Pickering KG
+  (ed) The Mangle in Practice: Science, Society, and Becoming, Duke University
+  Press
+
+\bibitem[{Pickering(1995)}]{Pickering1995}
+Pickering A (1995) The Mangle of Practice: Time, Agency, and Science.
+  University of Chicago Press
+
+\bibitem[{Ryan and Nicolau(2003)}]{ryan:2003:GPTP}
+Ryan C, Nicolau M (2003) Doing genetic algorithms the genetic programming way.
+  In: Riolo RL, Worzel B (eds) Genetic Programming Theory and Practice, Kluwer,
+  chap~12, pp 189--204, \doi{doi:10.1007/978-1-4419-8983-3_12},
+  \urlprefix\url{http://www.springer.com/computer/ai/book/978-1-4020-7581-0}
+
 \bibitem[{Spector(2012)}]{Spector:2012:GECCOcompA}
 Spector L (2012) Assessment of problem modality by differential performance of
   lexicase selection in genetic programming: {A} preliminary report. In:
@@ -15,5 +55,17 @@ Spector L (2012) Assessment of problem modality by differential performance of
   (GECCO-UP), ACM, Philadelphia, Pennsylvania, USA, pp 401--408,
   \doi{doi:10.1145/2330784.2330846},
   \urlprefix\url{http://hampshire.edu/lspector/pubs/wk09p4-spector.pdf}
+
+\bibitem[{Thomas(2013)}]{Thomas2013}
+Thomas D (2013) Codekata: How it started.
+  \urlprefix\url{http://codekata.com/kata/codekata-how-it-started/}
+
+\bibitem[{Veyne(1988)}]{Veyne:1988}
+Veyne P (1988) Did the Greeks Believe in Their Myths?: An Essay on the
+  Constitutive Imagination. University of Chicago Press
+
+\bibitem[{Winkler(2003)}]{Winkler:2003}
+Winkler P (2003) Mathematical Puzzles: A Connoisseur's Collection. A K
+  Peters/CRC Press
 
 \end{thebibliography}
