@@ -97,73 +97,73 @@ It should always be kept in mind that \emph{the point of the exercise is to evok
 
 \subsection{The Tableau}\hypertarget{the-tableau}{}\label{the-tableau}
 
-The game ``board'' is a \emph{Tableau} with two components: A list of search {\tt operators}, and a two-dimensional spreadsheet-like table which uses {\tt answers} as its row labels and {\tt rubrics} as its column labels. Initially the Tableau is empty, except for a single entry on the list of {\tt operators} labeled ``random guess''.
+The game ``board'' is a \emph{Tableau} with two components: A list of search \texttt{operators}, and a two-dimensional spreadsheet-like table which uses \texttt{answers} as its row labels and \texttt{rubrics} as its column labels. Initially the Tableau is empty, except for a single entry on the list of \texttt{operators} labeled ``random guess''.
 
-The ``random guess'' operator is set up by the Facilitator before play begins; it produces a single random {\tt answer} for the target problem, with no arguments. Think of it as equivalent to the ``initialization'' function used to produce a single ``random'' individual in a traditional GP setting.
+The ``random guess'' operator is set up by the Facilitator before play begins; it produces a single random \texttt{answer} for the target problem, with no arguments. Think of it as equivalent to the ``initialization'' function used to produce a single ``random'' individual in a traditional GP setting.
 
-During the User's turn, she can examine the state of the Tableau, including any or all of its history, and the algorithms in play, and apply any amount of data analysis or statistical work she wants. On her turn she is permitted no more than \emph{two} moves: She can (optionally) code and append one new {\tt operator} to the list of {\tt operators}, and she can (optionally) code and append one new {\tt rubric} column to that table.
+During the User's turn, she can examine the state of the Tableau, including any or all of its history, and the algorithms in play, and apply any amount of data analysis or statistical work she wants. On her turn she is permitted no more than \emph{two} moves: She can (optionally) code and append one new \texttt{operator} to the list of \texttt{operators}, and she can (optionally) code and append one new \texttt{rubric} column to that table.
 
-During the System's turn, it will produce a fixed number of new {\tt answers}. It creates each new {\tt answer} by first picking an entry from the list of {\tt operators} with uniform probability. When an {\tt operator} is chosen, it executes the indicated algorithm, selecting parents from the {\tt answers} table as needed. For each required selection of a parent, the scores recorded in the table of {\tt answers} vs {\tt rubrics} are used (see below). Once parents are selected, the {\tt operator} is applied and a new {\tt answer} is immediately appended to that part of the Tableau.
+During the System's turn, it will produce a fixed number of new \texttt{answers}. It creates each new \texttt{answer} by first picking an entry from the list of \texttt{operators} with uniform probability. When an \texttt{operator} is chosen, it executes the indicated algorithm, selecting parents from the \texttt{answers} table as needed. For each required selection of a parent, the scores recorded in the table of \texttt{answers} vs \texttt{rubrics} are used (see below). Once parents are selected, the \texttt{operator} is applied and a new \texttt{answer} is immediately appended to that part of the Tableau.
 
 \subsubsection{Answers}\hypertarget{answers}{}\label{answers}
 
-What I'm calling an {\tt answer} here would probably be called an ``individual'' in the GP literature. In this case, it is a particular \emph{script} or program in the representation language the Facilitator has chosen for the target problem.
+What I'm calling an \texttt{answer} here would probably be called an ``individual'' in the GP literature. In this case, it is a particular \emph{script} or program in the representation language the Facilitator has chosen for the target problem.
 
 Answers never ``die'', and cannot be removed from the Tableau by either player.
 
 \subsubsection{Operators}\hypertarget{operators}{}\label{operators}
 
-Each {\tt operator} is a function which takes as its argument an unordered  collection of zero or more {\tt answers}, and which produces a new collection of one or more {\tt answers} as output.
+Each \texttt{operator} is a function which takes as its argument an unordered  collection of zero or more \texttt{answers}, and which produces a new collection of one or more \texttt{answers} as output.
 
-The initial Tableau includes only a single {\tt operator}, which implements a pre-coded ``random guessing'' algorithm. On the User's move, she may build and launch other more complex (and familiar) {\tt operators} like crossover or mutation. The only permitted argument is a set of zero or more {\tt answers}; no numerical or other parameters are allowed. A wide variety of {\tt operator} algorithms are still possible, and the details of the code in which they are implemented is left to the Facilitator to specify as part of the game setup.
+The initial Tableau includes only a single \texttt{operator}, which implements a pre-coded ``random guessing'' algorithm. On the User's move, she may build and launch other more complex (and familiar) \texttt{operators} like crossover or mutation. The only permitted argument is a set of zero or more \texttt{answers}; no numerical or other parameters are allowed. A wide variety of \texttt{operator} algorithms are still possible, and the details of the code in which they are implemented is left to the Facilitator to specify as part of the game setup.
 
-Except for some unusual edge cases, the \emph{specific} set of {\tt answers} to which an {\tt operator} will be applied cannot be chosen directly by the User. All ``parents'' defined for each {\tt operator} are chosen independently (and incrementally) by \emph{lexicase selection}, using the suite of {\tt rubrics} in play when the System takes its turn. This lexicase selection process samples every {\tt rubric} in the Tableau with equal probability. It may be possible for the User to design a new ``selection'' {\tt operator} which takes as its argument ``all the answers'' and somehow culls that collection down to a subset---but to do so, it must rely on the immediate state of the {\tt answers} it is given; {\tt rubric} scores are ``stored'' only in the Tableau {\tt answer} table itself, not as gettable attributes of the {\tt answers}, making it very difficult for any new {\tt operator} algorithm to use {\tt rubric} scores in its implementation.
+Except for some unusual edge cases, the \emph{specific} set of \texttt{answers} to which an \texttt{operator} will be applied cannot be chosen directly by the User. All ``parents'' defined for each \texttt{operator} are chosen independently (and incrementally) by \emph{lexicase selection}, using the suite of \texttt{rubrics} in play when the System takes its turn. This lexicase selection process samples every \texttt{rubric} in the Tableau with equal probability. It may be possible for the User to design a new ``selection'' \texttt{operator} which takes as its argument ``all the answers'' and somehow culls that collection down to a subset---but to do so, it must rely on the immediate state of the \texttt{answers} it is given; \texttt{rubric} scores are ``stored'' only in the Tableau \texttt{answer} table itself, not as gettable attributes of the \texttt{answers}, making it very difficult for any new \texttt{operator} algorithm to use \texttt{rubric} scores in its implementation.
 
-Note again: no mechanism exists which \emph{removes} {\tt answers} from the Tableau.
+Note again: no mechanism exists which \emph{removes} \texttt{answers} from the Tableau.
 
 \subsubsection{Rubrics}\hypertarget{rubrics}{}\label{rubrics}
 
-A {\tt rubric} is a function which returns a scalar value (not necessarily a \emph{number}) for any given {\tt answer}, conditioned (as needed) on the instantaneous Tableau state. When a {\tt rubric} is applied to an {\tt answer}, it sets a new value (or ``score'') for that {\tt answer} in the appropriate cell of the ``spreadsheet'' portion of the Tableau.
+A \texttt{rubric} is a function which returns a scalar value (not necessarily a \emph{number}) for any given \texttt{answer}, conditioned (as needed) on the instantaneous Tableau state. When a \texttt{rubric} is applied to an \texttt{answer}, it sets a new value (or ``score'') for that \texttt{answer} in the appropriate cell of the ``spreadsheet'' portion of the Tableau.
 
-No score is ever changed for an {\tt answer}, once it has been set by a {\tt rubric}. However, if multiple {\tt answers} exist which have the same {\tt script}, each may be scored at different times or in different contexts, and the resulting values may differ.
+No score is ever changed for an \texttt{answer}, once it has been set by a \texttt{rubric}. However, if multiple \texttt{answers} exist which have the same \texttt{script}, each may be scored at different times or in different contexts, and the resulting values may differ.
 
-An aggregate or \emph{higher-order} {\tt rubric} can be created, but its existence ``entails'' all of the component {\tt rubrics} from which its score is derived. So, for example, if the User constructs a {\tt rubric} like ``maximum absolute error observed over any of these 30 training cases'', on the turn when she adds that {\tt rubric} up to 31 new columns will be added to the spreadsheet portion of the Tableau: one for each of the 30 requisite ``sub-{\tt rubrics}'', which produce as their scores the absolute error for a single training case, and also one \emph{aggregate} {\tt rubric} which calculates and reports ``maximum of those other 30 scores''. Whenever the User submits such a higher-order {\tt rubric} on her turn, all of the entailed {\tt rubrics} are added automatically if they do not already exist. Note however that there must still be a \emph{warrant} for the {\tt rubric}, which convinces the Facilitator of its potential usefulness.
+An aggregate or \emph{higher-order} \texttt{rubric} can be created, but its existence ``entails'' all of the component \texttt{rubrics} from which its score is derived. So, for example, if the User constructs a \texttt{rubric} like ``maximum absolute error observed over any of these 30 training cases'', on the turn when she adds that \texttt{rubric} up to 31 new columns will be added to the spreadsheet portion of the Tableau: one for each of the 30 requisite ``sub-\texttt{rubrics}'', which produce as their scores the absolute error for a single training case, and also one \emph{aggregate} \texttt{rubric} which calculates and reports ``maximum of those other 30 scores''. Whenever the User submits such a higher-order \texttt{rubric} on her turn, all of the entailed \texttt{rubrics} are added automatically if they do not already exist. Note however that there must still be a \emph{warrant} for the \texttt{rubric}, which convinces the Facilitator of its potential usefulness.
 
-The User can use any information present in the Tableau in building new {\tt rubric} functions (such as row numbers, string values of {\tt answers}, or scores), and can also examine the detailed state of the interpreter before and after the {\tt script} is run. It should be clear therefore that the User can specify {\tt rubric} functions which score aspects of the problem such as:
+The User can use any information present in the Tableau in building new \texttt{rubric} functions (such as row numbers, string values of \texttt{answers}, or scores), and can also examine the detailed state of the interpreter before and after the \texttt{script} is run. It should be clear therefore that the User can specify \texttt{rubric} functions which score aspects of the problem such as:
 
 \begin{itemize}
 \item the absolute error for a single training case
-\item the number of tokens in the {\tt answer}'s script
-\item maximum error measured in any of 35 other {\tt rubrics}
-\item number of {\tt div0} errors produced when running a script with a particular set of inputs
-\item number of stochastic instructions appearing in the {\tt answer}'s script
-\item rewrite difference between the scored script the most common {\tt answer} in the population
+\item the number of tokens in the \texttt{answer}'s script
+\item maximum error measured in any of 35 other \texttt{rubrics}
+\item number of \texttt{div0} errors produced when running a script with a particular set of inputs
+\item number of stochastic instructions appearing in the \texttt{answer}'s script
+\item rewrite difference between the scored script the most common \texttt{answer} in the population
 \item (and so on)
 \end{itemize}
 
-Various problem-specific aspects are glossed here, and it is left to the Facilitator to be reasonable in the context of the target problem and the representation she has chosen. Suffice to say, the construction of useful {\tt rubrics} in response the System's moves is the core of the User player's game strategy.
+Various problem-specific aspects are glossed here, and it is left to the Facilitator to be reasonable in the context of the target problem and the representation she has chosen. Suffice to say, the construction of useful \texttt{rubrics} in response the System's moves is the core of the User player's game strategy.
 
 \subsection{Lexicase Selection}\hypertarget{lexicase-selection}{}\label{lexicase-selection}
 
-All {\tt operator} inputs are chosen by lexicase selection. Slightly simplifying Spector's original description \citep{Spector:2012:GECCOcompA}, the following algorithm can be used:
+All \texttt{operator} inputs are chosen by lexicase selection. Slightly simplifying Spector's original description \citep{Spector:2012:GECCOcompA}, the following algorithm can be used:
 
 \begin{itemize}
-\item (beginning with a ``set under consideration'' which includes all {\tt answers}\ldots{})
-\item for each {\tt rubric} in a random permutation of all the {\tt rubrics} in the Tableau, discard all {\tt answers} from the set under consideration whose score on this {\tt rubric} is sub-optimal (relative to the current set under consideration)
-\item if multiple {\tt answers} remain after all {\tt rubrics} have been applied, return one {\tt answer} picked randomly, with uniform probability, from the remaining set under consideration
+\item (beginning with a ``set under consideration'' which includes all \texttt{answers}\ldots{})
+\item for each \texttt{rubric} in a random permutation of all the \texttt{rubrics} in the Tableau, discard all \texttt{answers} from the set under consideration whose score on this \texttt{rubric} is sub-optimal (relative to the current set under consideration)
+\item if multiple \texttt{answers} remain after all \texttt{rubrics} have been applied, return one \texttt{answer} picked randomly, with uniform probability, from the remaining set under consideration
 \end{itemize}
 
-At the beginning of the game when no {\tt rubrics} have been added and no {\tt operators} exist which require ``parents'', no selection occurs or needs to occur. But note that the algorithm as described would \emph{still} provide a parent, even when no {\tt rubrics} have been specified: an empty set of {\tt rubrics} would be immediately exhausted without eliminating any {\tt answers}, and then a single {\tt answer} would be selected with uniform probability from that complete set.
+At the beginning of the game when no \texttt{rubrics} have been added and no \texttt{operators} exist which require ``parents'', no selection occurs or needs to occur. But note that the algorithm as described would \emph{still} provide a parent, even when no \texttt{rubrics} have been specified: an empty set of \texttt{rubrics} would be immediately exhausted without eliminating any \texttt{answers}, and then a single \texttt{answer} would be selected with uniform probability from that complete set.
 
-Lexicase selection has several characteristics which argue for its use here; in particular it is interesting because it seems (anecdotally, but see also Helmuth in this volume) to be a relatively ``slow'' selection method, permitting a diversity of {\tt answers} to coexist in a population at the same time. However I admit readily that I've specified it as a core part of this \emph{kata} because it is \emph{unfamiliar to most prospective players}, and therefore more likely to produce unexpected behavior of a useful sort.
+Lexicase selection has several characteristics which argue for its use here; in particular it is interesting because it seems (anecdotally, but see also Helmuth in this volume) to be a relatively ``slow'' selection method, permitting a diversity of \texttt{answers} to coexist in a population at the same time. However I admit readily that I've specified it as a core part of this \emph{kata} because it is \emph{unfamiliar to most prospective players}, and therefore more likely to produce unexpected behavior of a useful sort.
 
 \subsection{The User's turn}\hypertarget{the-users-turn}{}\label{the-users-turn}
 
 In her turn, the User can do either (or both) of the following:
 
 \begin{enumerate}
-\item add one {\tt operator} to the list in the Tableau
-\item add one {\tt rubric} to the Tableau, which can be ``higher-order'' and therefore entail others
+\item add one \texttt{operator} to the list in the Tableau
+\item add one \texttt{rubric} to the Tableau, which can be ``higher-order'' and therefore entail others
 \end{enumerate}
 
 To support these decisions, the User can examine the Tableau state and history in detail. Before any code is implemented, though, a \emph{warrant} must be written for each one.
@@ -172,11 +172,11 @@ To support these decisions, the User can examine the Tableau state and history i
 
 A \emph{warrant} is a verbal or written argument which spells out the justification for one of the User's moves \emph{in the context of the game as it stands when the move is made}.
 
-Suppose, for example, that the User has not yet added \emph{any} {\tt rubrics}, and would like to add a new one that scores {\tt answers} for a single training case. Since the System is simply making new {\tt answers} with the ``random guess'' {\tt operator}, it seems perfectly reasonable to warrant this new {\tt rubric} simply by pointing out that selection can't drive search towards better answers without at least one training case being used.
+Suppose, for example, that the User has not yet added \emph{any} \texttt{rubrics}, and would like to add a new one that scores \texttt{answers} for a single training case. Since the System is simply making new \texttt{answers} with the ``random guess'' \texttt{operator}, it seems perfectly reasonable to warrant this new \texttt{rubric} simply by pointing out that selection can't drive search towards better answers without at least one training case being used.
 
-Suppose further that later in the same game the User has added more {\tt rubrics}, such that more than 100 training cases are being used to select parents for the several {\tt operators} in play. In this context, the reasons given for adding a new {\tt rubric} that specifies \emph{just that one particular training case} must surely be very different: perhaps there is a problematic region of the response surface, or a different training case that needs additional ``support'' to differentiate between two close input states (and so forth).
+Suppose further that later in the same game the User has added more \texttt{rubrics}, such that more than 100 training cases are being used to select parents for the several \texttt{operators} in play. In this context, the reasons given for adding a new \texttt{rubric} that specifies \emph{just that one particular training case} must surely be very different: perhaps there is a problematic region of the response surface, or a different training case that needs additional ``support'' to differentiate between two close input states (and so forth).
 
-That said, a warrant does \emph{not} need to be ``technical'' or even ``rigorous'', but merely robust enough to be convincing \emph{in the moment}. For example, ``I made a crossover {\tt operator} because I think we need to search for new answers `in between' the parents,'' sounds to me like a shoddy excuse that invokes received wisdom. On the other hand, ``I made crossover so we can drop the variance on this rubric and foster inbreeding of \emph{these} solutions \emph{here},'' given a glance at the Tableau and charts on hand, should be more convincing.
+That said, a warrant does \emph{not} need to be ``technical'' or even ``rigorous'', but merely robust enough to be convincing \emph{in the moment}. For example, ``I made a crossover \texttt{operator} because I think we need to search for new answers `in between' the parents,'' sounds to me like a shoddy excuse that invokes received wisdom. On the other hand, ``I made crossover so we can drop the variance on this rubric and foster inbreeding of \emph{these} solutions \emph{here},'' given a glance at the Tableau and charts on hand, should be more convincing.
 
 Note though that decisions and the warrants that supported them may well prove to have been wrong in hindsight. This in itself is an interesting and useful outcome in the game: when an earlier decision does not actually produce the expected effect in the system, this is a perfect point for the User to be reminded of the apparent inconsistency. Such ``failed'' warrants shouldn't be rescinded, but it may be appropriate to bring them up as ``concerns'' in later moves, especially if they begin to accumulate.
 
@@ -188,7 +188,7 @@ The Facilitator is responsible for picking a representation language and target 
 
 \subsubsection{Choosing a representation language}\hypertarget{choosing-a-representation-language}{}\label{choosing-a-representation-language}
 
-No particular constraints apply to the language or representation chosen for the exercise, except that it should be sophisticated enough to support \emph{redundant capacity}. That is, for any given algorithmic goal, there should be multiple paths to success.  So for example if the problem's solution could reasonably be expected to involve ordered lists, then it would be best if the language had at least two different ways to ``use lists'', for example with iterators, recursion, a comprehensive set of second-order functional operators, an explicit {\tt List} type with associated methods, and so forth.
+No particular constraints apply to the language or representation chosen for the exercise, except that it should be sophisticated enough to support \emph{redundant capacity}. That is, for any given algorithmic goal, there should be multiple paths to success.  So for example if the problem's solution could reasonably be expected to involve ordered lists, then it would be best if the language had at least two different ways to ``use lists'', for example with iterators, recursion, a comprehensive set of second-order functional operators, an explicit \texttt{List} type with associated methods, and so forth.
 
 If the language is sophisticated enough to have ``libraries'' of instructions and types intended for specialized domains, I'd strongly encourage that \emph{all of these should be used}. That is, the Facilitator should err on the side of ``winnowing complexity'', rather than forcing the User (and thus the System) to \emph{invent basic data structures} or the idea of floating-point numbers at the same time they're trying to solve the ``real'' problem under consideration.
 
@@ -203,26 +203,26 @@ Colleagues have pointed out that even if the chosen problem turns out to be ``to
 \subsubsection{Initial setup and restrictions}\hypertarget{initial-setup-and-restrictions}{}\label{initial-setup-and-restrictions}
 
 \begin{itemize}
-\item the only {\tt operator} is ``random guess'', which creates one new {\tt answer} with an arbitrary script
-\item no {\tt rubrics} are present
+\item the only \texttt{operator} is ``random guess'', which creates one new \texttt{answer} with an arbitrary script
+\item no \texttt{rubrics} are present
 \item the System player moves first
-\item there is no mechanism for \emph{removing} {\tt answers} from the tableau
-\item the System player \emph{always} uses lexicase selection, \emph{always} choses {\tt operators} with equal probability from the current list, and \emph{always} uses all {\tt rubrics} in the Tableau
-\item a {\tt rubric} can only be \emph{run} on a given {\tt answer} once; stochastic scripts will only be sampled one time, and no {\tt rubric} score is ever recalculated after the first time, though multiple copies of the same stochastic {\tt answer} will probably end up with different scores in the same field
+\item there is no mechanism for \emph{removing} \texttt{answers} from the tableau
+\item the System player \emph{always} uses lexicase selection, \emph{always} choses \texttt{operators} with equal probability from the current list, and \emph{always} uses all \texttt{rubrics} in the Tableau
+\item a \texttt{rubric} can only be \emph{run} on a given \texttt{answer} once; stochastic scripts will only be sampled one time, and no \texttt{rubric} score is ever recalculated after the first time, though multiple copies of the same stochastic \texttt{answer} will probably end up with different scores in the same field
 \end{itemize}
 
 \subsubsection{The System's turn}\hypertarget{the-systems-turn}{}\label{the-systems-turn}
 
-During its turn, the System player will add a specified number of new {\tt answers} to the Tableau, one at a time, using a simple form of lexicase selection. Until it reaches its halting state it iterates this cycle:
+During its turn, the System player will add a specified number of new \texttt{answers} to the Tableau, one at a time, using a simple form of lexicase selection. Until it reaches its halting state it iterates this cycle:
 
 \begin{enumerate}
-\item select one {\tt operator} from those in the Tableau, with equal probability
-\item apply lexicase selection to select the required number of input {\tt answers}
-\item apply the chosen {\tt operator} to the inputs {\tt answers} to produce one or more new {\tt answers}, and append those new {\tt answers} immediately to the Tableau
-\item {\tt HALT} if the number of new {\tt answers} meets or exceeds the limit, and delete any extra {\tt answers} that exceed the limit; otherwise, go to step (1)
+\item select one \texttt{operator} from those in the Tableau, with equal probability
+\item apply lexicase selection to select the required number of input \texttt{answers}
+\item apply the chosen \texttt{operator} to the inputs \texttt{answers} to produce one or more new \texttt{answers}, and append those new \texttt{answers} immediately to the Tableau
+\item \texttt{HALT} if the number of new \texttt{answers} meets or exceeds the limit, and delete any extra \texttt{answers} that exceed the limit; otherwise, go to step (1)
 \end{enumerate}
 
-The number of {\tt answers} created in each turn should be enough to have a chance of providing new and useful information to the User, and not so much that the System state grows out of control. I would suggest 100 or 500 {\tt answers} per turn; this is about the size of the typical ``population'' for most GP users, and is on a comfortable scale for them.
+The number of \texttt{answers} created in each turn should be enough to have a chance of providing new and useful information to the User, and not so much that the System state grows out of control. I would suggest 100 or 500 \texttt{answers} per turn; this is about the size of the typical ``population'' for most GP users, and is on a comfortable scale for them.
 
 \section{Why: A Warrant}\hypertarget{why-a-warrant}{}\label{why-a-warrant}
 
